@@ -58,6 +58,9 @@ android {
         }
     }
 
+    dataBinding {
+            enabled = true
+    }
 }
 
 //Arouter注解处理器选项
@@ -79,4 +82,10 @@ dependencies {
     implementation(project(":lib_api"))
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation "androidx.room:room-runtime:2.5.0"
+    annotationProcessor "androidx.room:room-compiler:2.5.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
 }

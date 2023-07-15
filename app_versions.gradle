@@ -11,6 +11,6 @@ ext{
 
     //三方库版本
     versions =[
-            arouter_version : "1.5.2",
+            arouter_version : "1.5.2"
     ]
 }
