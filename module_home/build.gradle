@@ -1,22 +1,14 @@
 plugins {
+    id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'//kapt插件，Arouter注解处理器需要
-}
-
-if (!isDebug){
-    apply plugin:'com.android.library'
-}else{
-    apply plugin:'com.android.application'
 }
 
 android {
-    namespace 'com.example.module.home'
+    namespace 'com.test.module_home'
     compileSdk 32
 
     defaultConfig {
-        if (isDebug){
-        applicationId "com.example.module.home"
-        }
+        applicationId "com.test.module_home"
         minSdk 23
         targetSdk 32
         versionCode 1
@@ -38,37 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    //下面这串代码用于单模块调试
-    //源集 - 用来设定java目录或者资源目录
-    sourceSets{
-        main{
-            if(isDebug){
-                //组件化模式
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-                java.srcDirs = ['src/main/debug','src/main/java']
-            }else{
-                //集成模式
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-
-                //排除掉debug包的信息
-                java{
-                    exclude 'src/main/debug'
-                }
-            }
-        }
-    }
-
-    dataBinding {
-            enabled = true
-    }
 }
 
-//Arouter注解处理器选项
-kapt{
-    arguments{
-        arg("AROUTER_MODULE_NAME",project.getName())
-    }
-}
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -78,14 +41,4 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    //依赖api通信模块
-    implementation(project(":lib_api"))
-    //依赖Arouter注解处理器
-    kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
-    implementation "androidx.room:room-runtime:2.5.0"
-    annotationProcessor "androidx.room:room-compiler:2.5.0"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
 }
