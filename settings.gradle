@@ -15,11 +15,8 @@ dependencyResolutionManagement {
 rootProject.name = "Openeyessss"
 include ':app'
 include ':lib_common'
-include ':module_home'
 include ':lib_api'
-include ':module_player'
 include ':lib_video'
-include ':module_user'
-include ':module_square'
-include ':module_discovery'
 include ':lib_network'
+
+include ':module_home'
