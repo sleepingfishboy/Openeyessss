@@ -20,3 +20,7 @@ include ':lib_video'
 include ':lib_network'
 
 include ':module_home'
+include ':module_square'
+include ':module_discovery'
+include ':module_user'
+include ':module_player'
