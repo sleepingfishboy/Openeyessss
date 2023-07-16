@@ -1,16 +1,21 @@
 plugins {
-    id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'//kapt插件，Arouter注解处理器需要
 }
-
+if (!isDebug){
+    apply plugin:'com.android.library'
+}else{
+    apply plugin:'com.android.application'
+}
 android {
-    namespace 'com.test.module_home'
-    compileSdk 32
+    namespace 'com.test.module.home'
+    compileSdk app_sdk.compileSdk
 
     defaultConfig {
-        applicationId "com.test.module_home"
-        minSdk 23
-        targetSdk 32
+        if (isDebug){
+        applicationId "com.test.module.home"}
+        minSdk app_sdk.minSdk
+        targetSdk app_sdk.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -30,8 +35,32 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
+    //下面这串代码用于单模块调试
+    //源集 - 用来设定java目录或者资源目录
+    sourceSets{
+        main{
+            if(isDebug){
+                //组件化模式
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                java.srcDirs = ['src/main/debug','src/main/java']
+            }else{
+                //集成模式
+                manifest.srcFile 'src/main/AndroidManifest.xml'
 
+                //排除掉debug包的信息
+                java{
+                    exclude 'src/main/debug'
+                }
+            }
+        }
+    }
+}
+//Arouter注解处理器选项
+kapt{
+    arguments{
+        arg("AROUTER_MODULE_NAME",project.getName())
+    }
+}
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -41,4 +70,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //依赖api通信模块
+    implementation(project(":lib_api"))
+    //依赖Arouter注解处理器
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
 }
