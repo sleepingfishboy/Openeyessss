@@ -46,4 +46,5 @@ dependencies {
     implementation(project(":lib_common"))
     implementation(project(":lib_network"))
     implementation(project(":lib_video"))
+    implementation(project(":module_home"))
 }
