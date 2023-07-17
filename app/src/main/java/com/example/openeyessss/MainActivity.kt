@@ -5,7 +5,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentContainerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.test.module.discovery.DiscoveryFragment
 import com.test.module.home.HomeFragment
+import com.test.module.square.SquareFragment
+import com.test.module.user.UserFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -19,7 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentMap:MutableMap<Int, Fragment> =HashMap()
         val homeFragment= HomeFragment()
+        val squareFragment=SquareFragment()
+        val discoveryFragment=DiscoveryFragment()
+        val userFragment=UserFragment()
         fragmentMap[R.id.home]=homeFragment
+        fragmentMap[R.id.discovery]=discoveryFragment
+        fragmentMap[R.id.square]=squareFragment
+        fragmentMap[R.id.user]=userFragment
 
         bottomNavigationView.setOnItemSelectedListener{item->
             when(item.itemId){
@@ -34,5 +43,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        supportFragmentManager.beginTransaction().replace(R.id.container_view,fragmentMap[R.id.home]!!).commit()
     }
 }

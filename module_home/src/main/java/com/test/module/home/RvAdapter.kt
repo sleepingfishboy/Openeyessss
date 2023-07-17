@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 
-class RvAdapter(private val dataList: List<Data>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
+class RvAdapter(private val dataList: List<String>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val imageView:ImageView=itemView.findViewById(R.id.card_image)
         val tvTitle:TextView=itemView.findViewById(R.id.card_title)
