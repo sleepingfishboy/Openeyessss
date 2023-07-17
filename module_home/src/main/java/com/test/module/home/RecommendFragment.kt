@@ -30,7 +30,7 @@ class RecommendFragment : Fragment() {
         recyclerView=view.findViewById(R.id.rv_recommend)
         val layoutManager:RecyclerView.LayoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         recyclerView.layoutManager=layoutManager
-        recyclerView.adapter=rvAdapter
+        recyclerView.adapter=RvAdapter(listOf("a","b"))
     }
 
 }

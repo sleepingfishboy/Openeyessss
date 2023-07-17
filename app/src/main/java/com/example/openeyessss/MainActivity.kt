@@ -43,5 +43,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        supportFragmentManager.beginTransaction().replace(R.id.container_view,fragmentMap[R.id.home]!!).commit()
     }
 }
