@@ -12,9 +12,9 @@ import com.google.android.material.card.MaterialCardView
 
 class RvAdapter(private val dataList: List<String>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val imageView:ImageView=itemView.findViewById(R.id.card_image)
-        val tvTitle:TextView=itemView.findViewById(R.id.card_title)
-        val tvAuthor:TextView=itemView.findViewById(R.id.card_author)
+        val imageView:ImageView=itemView.findViewById(R.id.rm_image_view)
+        val tvTitle:TextView=itemView.findViewById(R.id.rm_title)
+        val tvAuthor:TextView=itemView.findViewById(R.id.rm_tag)
     }
     override fun getItemCount(): Int {
         return dataList.size
@@ -26,7 +26,7 @@ class RvAdapter(private val dataList: List<String>) :RecyclerView.Adapter<RvAdap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.item_card,parent,false)
+        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.item_recommend,parent,false)
         return ViewHolder(itemView)
     }
 
