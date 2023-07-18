@@ -1,3 +1,5 @@
+package com.example.lib.network
+
 import android.hardware.camera2.params.RecommendedStreamConfigurationMap
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET

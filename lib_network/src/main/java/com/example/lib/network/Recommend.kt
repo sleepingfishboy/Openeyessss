@@ -1,3 +1,5 @@
+package com.example.lib.network
+
 class Recommend(
     val adExist: Boolean,
     val count: Int,
