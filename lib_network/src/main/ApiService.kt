@@ -1,3 +1,4 @@
+import android.hardware.camera2.params.RecommendedStreamConfigurationMap
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 
@@ -16,4 +17,7 @@ interface ApiService {
 
     @GET("api/v4/rankList/videos?strategy=monthly")
     fun getMonthly(): Observable<Monthly>
+
+    @GET("api/v5/index/tab/allRec")
+    fun getRecommend(): Observable<Recommend>
 }

@@ -18,4 +18,9 @@ object ApiManager {
         return apiService.getHotWords()?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
     }
+    fun getRecommend(): Observable<Recommend>? {
+        return apiService.getRecommend()?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+    }
+
 }
