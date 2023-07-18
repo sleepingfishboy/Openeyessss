@@ -2,7 +2,7 @@ package com.test.module.discovery
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.module.discovery.R
+
 
 class DiscoveryMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
