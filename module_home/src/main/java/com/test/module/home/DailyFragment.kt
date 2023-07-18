@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DailyFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var rvAdapter: RvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +30,6 @@ class DailyFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager=
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         recyclerView.layoutManager=layoutManager
-        recyclerView.adapter=RvAdapter(listOf("a","b","c","d"))
+        recyclerView.adapter=DailyAdapter(listOf("a","b","c","d"))
     }
 }
