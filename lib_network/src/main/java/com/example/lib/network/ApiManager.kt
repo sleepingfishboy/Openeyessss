@@ -1,5 +1,6 @@
+package com.example.lib.network
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -10,8 +11,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
  */
 object ApiManager {
-    private val apiService: ApiService by lazy {
-        ApiRequest.apiService
+    private val apiService: com.example.lib.network.ApiService by lazy {
+        com.example.lib.network.ApiRequest.apiService
     }
 
     fun getHotWords(): Observable<HotWords>? {
