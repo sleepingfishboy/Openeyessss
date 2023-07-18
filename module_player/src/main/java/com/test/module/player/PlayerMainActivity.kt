@@ -3,6 +3,7 @@ package com.test.module.player
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+
 class PlayerMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 class DailyFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var rvAdapter: RvAdapter
