@@ -1,10 +1,11 @@
-package com.test.module.discovery
+package com.test.module.discovery.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.test.module.discovery.R
 
 
 class MonthFragment : Fragment() {
