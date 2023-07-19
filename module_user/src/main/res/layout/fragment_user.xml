@@ -7,24 +7,17 @@
     tools:context=".UserFragment">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="276dp"
-        android:src="@drawable/background"
+        android:layout_width="175dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="648dp"
+        android:src="@drawable/eyee"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/avatarImageView"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="232dp"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
