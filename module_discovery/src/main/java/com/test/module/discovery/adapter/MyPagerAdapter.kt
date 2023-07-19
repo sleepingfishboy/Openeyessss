@@ -1,7 +1,10 @@
-package com.test.module.discovery
+package com.test.module.discovery.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.test.module.discovery.fragment.MonthFragment
+import com.test.module.discovery.fragment.TotalFragment
+import com.test.module.discovery.fragment.WeekFragment
 
 /**
  *作者：sleepingfishboy
@@ -19,4 +22,5 @@ class MyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }
+
 }
