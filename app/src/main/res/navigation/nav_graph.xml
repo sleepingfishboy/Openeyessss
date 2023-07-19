@@ -15,7 +15,7 @@
         android:label="SquareFragment" />
     <fragment
         android:id="@+id/discoveryFragment"
-        android:name="com.test.module.discovery.DiscoveryFragment"
+        android:name="com.test.module.discovery.fragment.DiscoveryFragment"
         android:label="DiscoveryFragment" />
     <fragment
         android:id="@+id/userFragment"
