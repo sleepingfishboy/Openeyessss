@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 
 
 object Repository {
-    fun searchRecommend(query:String)= liveData<String>(Dispatchers.IO){
+    fun searchRecommend(query:String)= liveData<Result<List<RecommendResponse.Item>>>(Dispatchers.IO){
         val result=try {
             val recommendResponse=RecommendNetwork.searchRecommend(query)
             val recommend=recommendResponse.itemList
@@ -13,6 +13,6 @@ object Repository {
         }catch (e:Exception){
             Result.failure<List<RecommendResponse.Item>>(e)
         }
-        emit(result.toString())
+        emit(result)
     }
 }

@@ -1,6 +1,5 @@
 package com.test.module.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,12 +19,11 @@ class RecommendFragment : Fragment() {
     private lateinit var rvAdapter: RvAdapter
 
     val viewModel by lazy { ViewModelProvider(this).get(RecommendViewModel::class.java) }
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.recommendLiveData.observe(this,Observer{result->
             val recommend=result.get(0)
-            viewModel.recommendLiveData.value=recommend.toString()
+            viewModel.recommendList
         })
     }
 
