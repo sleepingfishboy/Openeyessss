@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.test.module.home.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/squareFragment"
+        android:name="com.test.module.square.SquareFragment"
+        android:label="SquareFragment" />
+    <fragment
+        android:id="@+id/discoveryFragment"
+        android:name="com.test.module.discovery.DiscoveryFragment"
+        android:label="DiscoveryFragment" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.test.module.user.UserFragment"
+        android:label="UserFragment" />
+</navigation>
