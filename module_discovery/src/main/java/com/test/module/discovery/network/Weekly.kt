@@ -12,9 +12,7 @@ data class Weekly(
     val nextPageUrl: Any,
     val total: Int
 ) {
-    operator fun iterator() {
 
-    }
 
     data class Item(
         val adIndex: Int,
@@ -27,7 +25,7 @@ data class Weekly(
         data class Data(
             val ad: Boolean,
             val adTrack: List<Any>,
-            val author: Author,
+            val author: Author,//作者
             val brandWebsiteInfo: Any,
             val campaign: Any,
             val category: String,
@@ -37,7 +35,7 @@ data class Weekly(
             val dataType: String,
             val date: Long,
             val description: String,
-            val descriptionEditor: String,
+            val descriptionEditor: String,//
             val descriptionPgc: String,
             val duration: Int,
             val favoriteAdTrack: Any,
@@ -114,7 +112,7 @@ data class Weekly(
             data class Cover(
                 val blurred: String,
                 val detail: String,
-                val feed: String,
+                val feed: String,//
                 val homepage: String,
                 val sharing: Any
             )
