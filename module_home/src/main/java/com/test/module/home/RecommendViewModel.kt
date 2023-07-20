@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 class RecommendViewModel:ViewModel() {
     val recommendLiveData=MutableLiveData<String>()
 
-    lateinit var  recommendList:List<Recommend.Item>
+    val recommendList = ArrayList<Recommend.Item>()
+
 
 }
