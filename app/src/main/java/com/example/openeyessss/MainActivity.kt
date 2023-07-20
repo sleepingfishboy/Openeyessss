@@ -1,5 +1,6 @@
 package com.example.openeyessss
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -26,8 +27,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
