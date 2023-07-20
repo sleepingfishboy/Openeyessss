@@ -44,6 +44,8 @@ dependencies {
     def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //在这里引入所有的模块
     implementation(project(":lib_api"))
     implementation(project(":lib_common"))
@@ -53,4 +55,5 @@ dependencies {
     implementation(project(":module_square"))
     implementation(project(":module_discovery"))
     implementation(project(":module_user"))
+
 }
