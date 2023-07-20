@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-
 class RecommendFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var rvAdapter: RvAdapter
@@ -21,6 +20,10 @@ class RecommendFragment : Fragment() {
     val viewModel by lazy { ViewModelProvider(this).get(RecommendViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.recommendLiveData.observe(this, Observer { result ->
+            val recommend = result.get(0)
+            viewModel.recommendList
+        })
     }
 
     override fun onCreateView(
@@ -33,10 +36,11 @@ class RecommendFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView= requireView().findViewById(R.id.rv_recommend)
-        val layoutManager:RecyclerView.LayoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        recyclerView.layoutManager=layoutManager
-        rvAdapter=RvAdapter(this,viewModel.recommendList)
-        recyclerView.adapter=rvAdapter
+        recyclerView = requireView().findViewById(R.id.rv_recommend)
+        val layoutManager: RecyclerView.LayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
+        rvAdapter = RvAdapter(this, viewModel.recommendList)
+        recyclerView.adapter = rvAdapter
     }
 }

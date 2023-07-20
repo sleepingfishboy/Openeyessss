@@ -1,5 +1,6 @@
 package com.test.module.discovery.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.module.discovery.R
-import com.test.module.discovery.network.Total
 import com.test.module.discovery.network.Weekly
 
 /**
@@ -44,6 +44,7 @@ class WeekAdapter : RecyclerView.Adapter<WeekAdapter.ViewHolder>() {
         return itemList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setWeeklyData(weeklyItems: List<Weekly.Item>) {
         itemList.clear()
         itemList.addAll(weeklyItems)

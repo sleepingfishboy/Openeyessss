@@ -28,7 +28,7 @@ class WeekFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_week, container, false)
 
-        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView = view.findViewById(R.id.rv_week)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = WeekAdapter()

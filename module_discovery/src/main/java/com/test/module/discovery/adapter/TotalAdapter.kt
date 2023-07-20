@@ -9,28 +9,28 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.test.module.discovery.R
-import com.test.module.discovery.network.Monthly
+import com.test.module.discovery.network.Total
+
 
 /**
  *作者：sleepingfishboy
- *时间：2023/7/19
+ *时间：2023/7/20
 
  */
-class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
-
-    private val itemList: MutableList<Monthly.Item> = mutableListOf()
+class TotalAdapter : RecyclerView.Adapter<TotalAdapter.ViewHolder>() {
+    private val itemList: MutableList<Total.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
         val titleText: TextView = itemView.findViewById(R.id.titleText)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+      override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
 
         Glide.with(holder.itemView)
@@ -40,14 +40,16 @@ class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
         holder.titleText.text = item.data.title
     }
 
-    override fun getItemCount(): Int {
+      override fun getItemCount(): Int {
         return itemList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMonthlyData(monthlyItems: List<Monthly.Item>) {
+    fun setTotalData(totalItems: List<Total.Item>) {
         itemList.clear()
-        itemList.addAll(monthlyItems)
+        itemList.addAll(totalItems)
         notifyDataSetChanged()
+
     }
+
 }
