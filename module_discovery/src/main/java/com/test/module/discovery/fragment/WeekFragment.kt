@@ -1,50 +1,51 @@
 package com.test.module.discovery.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.module.discovery.R
+import com.test.module.discovery.adapter.WeekAdapter
 import com.test.module.discovery.network.ApiManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
+
 class WeekFragment : Fragment() {
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: WeekAdapter
     private var disposable: Disposable? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        disposable = ApiManager.getWeekly()
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe({ weekly ->
-                // 处理 itemList 数据
-                for (item in weekly.itemList) {
-                    Log.d("ggg", item.data.title)
-                }
-            }, { error ->
-                // 处理错误情况
-                Log.e("ggg", "请求出错: ${error.message}")
-            })
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_week, container, false)
+        val view = inflater.inflate(R.layout.fragment_week, container, false)
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter = WeekAdapter()
+        recyclerView.adapter = adapter
+
+        disposable = ApiManager.getWeekly()
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe { weekly ->
+                adapter.setWeeklyData(weekly.itemList)
+            }
+
+        return view
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // 取消订阅
+    override fun onDestroyView() {
+        super.onDestroyView()
         disposable?.dispose()
     }
 }
