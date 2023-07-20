@@ -14,7 +14,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import network.ApiManager
 
-
 class RecommendFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var rvAdapter: RvAdapter
@@ -23,6 +22,10 @@ class RecommendFragment : Fragment() {
     val viewModel by lazy { ViewModelProvider(this).get(RecommendViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.recommendLiveData.observe(this, Observer { result ->
+            val recommend = result.get(0)
+            viewModel.recommendList
+        })
     }
 
     override fun onCreateView(
@@ -53,5 +56,7 @@ class RecommendFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         disposable?.dispose()
+
+        
     }
 }
