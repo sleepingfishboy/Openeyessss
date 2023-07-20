@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 
-class RvAdapter(private val fragment: Fragment, private val dataList: List<RecommendResponse.Item>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
+class RvAdapter(private val fragment: Fragment, private val dataList: List<Recommend.Item>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val imageView:ImageView=itemView.findViewById(R.id.rm_image_view)
         val tvTitle:TextView=itemView.findViewById(R.id.rm_title)

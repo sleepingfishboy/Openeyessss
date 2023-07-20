@@ -7,5 +7,5 @@ import retrofit2.http.Query
 
 interface RecommendService {
     @GET("api/v5/index/tab/allRec")
-    fun getRecommend(@Query("query")query:String): Observable<RecommendResponse>
+    fun getRecommend(): Observable<Recommend>
 }

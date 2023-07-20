@@ -74,4 +74,5 @@ dependencies {
     implementation(project(":lib_api"))
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
