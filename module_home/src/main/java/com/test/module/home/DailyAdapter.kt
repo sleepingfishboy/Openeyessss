@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class DailyAdapter(private val dataList: List<String>) : RecyclerView.Adapter<DailyAdapter.ViewHolder>(){
+class DailyAdapter(private val dataList: MutableList<Item>) : RecyclerView.Adapter<DailyAdapter.ViewHolder>(){
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val imageView: ImageView =itemView.findViewById(R.id.card_image)
         val tvTitle: TextView =itemView.findViewById(R.id.card_title)
@@ -20,6 +21,11 @@ class DailyAdapter(private val dataList: List<String>) : RecyclerView.Adapter<Da
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item=dataList[position]
 
+        if (item != null ) {
+            Glide.with(holder.itemView).load(item.data.content.data.cover.detail).into(holder.imageView)
+            holder.tvTitle.text=item.data.content.data.title
+            holder.tvAuthor.text=item.data.content.data.author.name
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

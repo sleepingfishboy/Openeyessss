@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,9 +17,24 @@ import kotlin.concurrent.thread
 class DailyFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var dailyAdapter: DailyAdapter
+    private lateinit var liveData: MutableLiveData<MutableList<Item>>
 
+    private val viewModel by lazy { ViewModelProvider(this).get(DailyViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.setDisposable()
+        liveData =viewModel.getData() as MutableLiveData<MutableList<Item>>
+        liveData.observe(this, Observer { dailyList->
+            dailyAdapter=DailyAdapter(dailyList)
+            recyclerView.adapter=dailyAdapter
+            swipeRefreshLayout.setColorSchemeResources(R.color.black)
+            swipeRefreshLayout.setOnRefreshListener {
+                refresh(DailyAdapter(dailyList))
+            }
+        })
+
     }
 
     override fun onCreateView(
@@ -34,11 +52,7 @@ class DailyFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager=
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         recyclerView.layoutManager=layoutManager
-        recyclerView.adapter=DailyAdapter(listOf("a","b","c","d"))
-        swipeRefreshLayout.setColorSchemeResources(R.color.black)
-        swipeRefreshLayout.setOnRefreshListener {
-            refresh(DailyAdapter(listOf("a","b","c","d")))
-        }
+
     }
 
     private fun refresh(dailyAdapter: DailyAdapter){

@@ -2,18 +2,17 @@ package com.test.module.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.test.module.home.network.ApiManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class RecommendViewModel:ViewModel() {
+class DailyViewModel:ViewModel() {
     private var disposable: Disposable? = null
-    private var dataList:MutableLiveData<MutableList<RecommendResponse.Item>> ?=null
+    private var dataList: MutableLiveData<MutableList<Item>>?=null
 
-    fun getData():LiveData<MutableList<RecommendResponse.Item>>{
+    fun getData(): LiveData<MutableList<Item>> {
         if (dataList==null){
             dataList= MutableLiveData()
         }
@@ -21,21 +20,20 @@ class RecommendViewModel:ViewModel() {
     }
 
     fun setDisposable(){
-        disposable = ApiManager.getRecommend()
+        disposable = ApiManager.getDaily()
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe { recommend->
-                setRecommendData(recommend.itemList)
+            ?.subscribe { daily->
+                setDailyData(daily.itemList)
             }
     }
 
-    private fun setRecommendData(recommendItems: List<RecommendResponse.Item>) {
-        val recommendList= mutableListOf<RecommendResponse.Item>()
+    private fun setDailyData(recommendItems: List<Item>) {
+        val recommendList= mutableListOf<Item>()
         for(i in recommendItems.indices){
-            if (recommendItems[i].data.title!=null)
+            if (recommendItems[i].data.content!=null)
                 recommendList.add(recommendItems[i])
         }
         dataList?.value =recommendList
     }
 }
-

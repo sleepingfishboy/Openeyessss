@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class RvAdapter(private val fragment: Fragment, private val dataList: List<Recommend.Item>) :RecyclerView.Adapter<RvAdapter.ViewHolder>(){
-    private val itemList:MutableList<Recommend.Item> =mutableListOf()
+class RvAdapter(private val dataList: MutableList<RecommendResponse.Item>):RecyclerView.Adapter<RvAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val imageView:ImageView=itemView.findViewById(R.id.rm_image_view)
@@ -25,11 +25,12 @@ class RvAdapter(private val fragment: Fragment, private val dataList: List<Recom
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item=dataList[position]
 
-        Glide.with(holder.itemView)
-            .load(item.data.cover.feed)
-            .into(holder.imageView)
-        holder.tvTitle.text=item.data.title
-        holder.tvAuthor.text=item.data.author.name
+        if (item != null && item.data.cover != null) {
+            Glide.with(holder.itemView).load(item.data.cover.detail).into(holder.imageView)
+            holder.tvTitle.text=item.data.title
+            holder.tvAuthor.text=item.data.author.name
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,10 +38,4 @@ class RvAdapter(private val fragment: Fragment, private val dataList: List<Recom
         return ViewHolder(itemView)
     }
 
-
-    fun setRecommendData(recommendItems: List<Recommend.Item>) {
-        itemList.clear()
-        itemList.addAll(recommendItems)
-        notifyDataSetChanged()
-    }
 }
