@@ -10,6 +10,8 @@
         android:theme="@style/Theme.Openeyessss">
         <activity
             android:name=".PlayerMainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
