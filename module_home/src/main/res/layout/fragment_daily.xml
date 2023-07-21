@@ -6,7 +6,7 @@
     tools:context=".DailyFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
+        android:id="@+id/swipeRefresh_daily"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
