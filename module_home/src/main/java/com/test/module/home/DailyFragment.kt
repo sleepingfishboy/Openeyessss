@@ -47,7 +47,7 @@ class DailyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh)
+        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh_daily)
         recyclerView=view.findViewById(R.id.rv_daily)
         val layoutManager: RecyclerView.LayoutManager=
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)

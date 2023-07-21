@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,9 +17,23 @@ import kotlin.concurrent.thread
 class SquareFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var squareAdapter: SquareAdapter
+    private lateinit var liveData:MutableLiveData<MutableList<Item>>
 
+    private val viewModel by lazy { ViewModelProvider(this).get(SquareViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.setDisposable()
+        liveData =viewModel.getData() as MutableLiveData<MutableList<Item>>
+        liveData.observe(this, Observer { recommendList->
+            squareAdapter=SquareAdapter(recommendList)
+            recyclerView.adapter=squareAdapter
+            swipeRefreshLayout.setColorSchemeResources(R.color.black)
+            swipeRefreshLayout.setOnRefreshListener {
+                refresh(SquareAdapter(recommendList))
+            }
+        })
     }
 
     override fun onCreateView(
@@ -33,12 +50,6 @@ class SquareFragment : Fragment() {
         recyclerView=view.findViewById(R.id.rv_square)
         val layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager=layoutManager
-        val adapter=SquareAdapter(listOf("a","b","c","d","e"))
-        recyclerView.adapter=adapter
-        swipeRefreshLayout.setColorSchemeResources(R.color.black)
-        swipeRefreshLayout.setOnRefreshListener {
-            refresh(SquareAdapter(listOf("a","b","c","d")))
-        }
     }
 
     private fun refresh(squareAdapter: SquareAdapter){
