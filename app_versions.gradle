@@ -1,6 +1,6 @@
 ext{
     //是否开启单模块调试
-    isDebug=false
+    isDebug=true
 
     //sdk版本
     app_sdk = [
