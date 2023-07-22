@@ -4,14 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+android:background="@drawable/background"
     tools:context=".PlayerMainActivity">
 
-    <xyz.doikki.videoplayer.player.VideoView
-        android:id="@+id/player"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_player"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="#00000000"
+
+        app:cardElevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <xyz.doikki.videoplayer.player.VideoView
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </xyz.doikki.videoplayer.player.VideoView>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="#B2313335"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_player"
+        app:strokeWidth="0dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="与我们一起踏上难忘的旅程，穿越迷人的佐治亚州，这里是葡萄酒的发源地。从崎岖的山脉到连绵起伏的丘陵，从迷人的城镇到繁华的城市，格鲁吉亚以独特的方式融合了旧世界的魅力和现代的便利。跟随我们穿越格鲁吉亚首都第比利斯，鹅卵石街道、古老的教堂、姆茨赫塔修道院、马尔特维利峡谷、遍布全国的葡萄园、迷人的梅斯蒂亚山脉和乌什古利的日出。From Jacob + Katie Schwarz"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_intro" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
