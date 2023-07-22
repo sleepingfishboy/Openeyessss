@@ -32,7 +32,7 @@ class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
                     val item = itemList[position]
                     ARouter.getInstance().build("/player/activity")
                         .withString("url", item.data.playUrl)
-                        .withString("title", item.data.description)
+                        .withString("description", item.data.description)
                         .withString("title", item.data.title)
                         .withString("id", item.data.id.toString())
                         .navigation()
