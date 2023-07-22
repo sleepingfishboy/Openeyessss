@@ -20,7 +20,7 @@ class DailyFragment : Fragment() {
     private lateinit var dailyAdapter: DailyAdapter
     private lateinit var liveData: MutableLiveData<MutableList<Item>>
 
-    private val viewModel by lazy { ViewModelProvider(this).get(DailyViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this)[DailyViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
