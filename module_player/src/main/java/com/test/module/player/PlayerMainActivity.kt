@@ -1,14 +1,16 @@
 package com.test.module.player
 
-import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.VideoView
+
 
 @Route(path = "/player/activity", group = "player")
 class PlayerMainActivity : AppCompatActivity() {
@@ -23,6 +25,13 @@ class PlayerMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_main)
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    )
+            window.statusBarColor = Color.TRANSPARENT
+        }
+
         ARouter.getInstance().inject(this)
 
         videoView = findViewById(R.id.player)
