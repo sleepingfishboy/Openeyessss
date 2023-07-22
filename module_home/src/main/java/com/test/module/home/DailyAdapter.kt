@@ -43,13 +43,15 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView=
-            LayoutInflater.from(parent.context).inflate(R.layout.item_card,parent,false)
-        val viewHolder=ViewHolder(itemView)
-        viewHolder.imageView.setOnClickListener{
-            val position=viewHolder.adapterPosition
-            val item=dataList[position]
-            ARouter.getInstance().build("/player/activity","player").withString("url",item.data.content.data.playUrl).withString("title",item.data.content.data.title).navigation()
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
+        val viewHolder = ViewHolder(itemView)
+        viewHolder.imageView.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            val item = dataList[position]
+            ARouter.getInstance().build("/player/activity", "player")
+                .withString("url", item.data.content.data.playUrl)
+                .withString("title", item.data.content.data.title).navigation()
         }
         return viewHolder
     }
