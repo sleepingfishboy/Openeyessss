@@ -44,9 +44,9 @@ class DailyAdapter(private val dataList: MutableList<Item>) : RecyclerView.Adapt
         val viewHolder=ViewHolder(itemView)
         viewHolder.imageView.setOnClickListener{
             val position=viewHolder.adapterPosition
-            val item=dataList[position+1]
-            ARouter.getInstance().build("/player/activity","player").navigation()
+            val item=dataList[position]
+            ARouter.getInstance().build("/player/activity","player").withString("url",item.data.content.data.playUrl).withString("title",item.data.content.data.title).navigation()
         }
-        return ViewHolder(itemView)
+        return viewHolder
     }
 }
