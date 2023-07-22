@@ -30,10 +30,14 @@ class WeekAdapter : RecyclerView.Adapter<WeekAdapter.ViewHolder>() {
                 // 处理item点击事件
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val clickedItem = itemList[position]
+                    val item = itemList[position]
                     ARouter.getInstance().build("/player/activity")
-                        .withString("url", "value")
+                        .withString("url", item.data.playUrl)
+                        .withString("title", item.data.description)
+                        .withString("title", item.data.title)
+                        .withString("id", item.data.id.toString())
                         .navigation()
+
                 }
             }
         }
