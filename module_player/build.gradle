@@ -54,6 +54,7 @@ android {
             }
         }
     }
+
 }
 //Arouter注解处理器选项
 kapt{
@@ -61,6 +62,7 @@ kapt{
         arg("AROUTER_MODULE_NAME",project.getName())
     }
 }
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -79,13 +81,4 @@ dependencies {
 
     //# 可选，包含StandardVideoController的实现
     implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.7'
-
-    //# 可选，使用exoplayer进行解码
-    implementation 'xyz.doikki.android.dkplayer:player-exo:3.3.7'
-
-   // # 可选，使用ijkplayer进行解码
-    implementation 'xyz.doikki.android.dkplayer:player-ijk:3.3.7'
-
-   // # 可选，如需要缓存或者抖音预加载功能请引入此库
-    implementation 'xyz.doikki.android.dkplayer:videocache:3.3.7'
 }

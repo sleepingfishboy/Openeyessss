@@ -2,6 +2,7 @@ ext {
     //是否开启单模块调试
     isDebug = false
 
+
     //sdk版本
     app_sdk = [
             compileSdk: 33,
