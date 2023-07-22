@@ -1,5 +1,7 @@
 package com.test.module.player
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import xyz.doikki.videocontroller.StandardVideoController
@@ -8,6 +10,16 @@ import xyz.doikki.videoplayer.player.VideoView
 
 class PlayerMainActivity : AppCompatActivity() {
     private lateinit var videoView: VideoView
+
+    companion object {
+        fun startActivity(context: Context) {
+            context.startActivity(
+                Intent(
+                    context,
+                    PlayerMainActivity::class.java
+                ).apply {  })
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_main)
