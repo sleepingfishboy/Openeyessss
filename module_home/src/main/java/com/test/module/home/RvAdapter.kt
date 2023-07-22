@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 
 
@@ -35,7 +36,13 @@ class RvAdapter(private val dataList: MutableList<RecommendResponse.Item>):Recyc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView=LayoutInflater.from(parent.context).inflate(R.layout.item_recommend,parent,false)
-        return ViewHolder(itemView)
+        val viewHolder=ViewHolder(itemView)
+        viewHolder.itemView.setOnClickListener {
+            val position=viewHolder.adapterPosition
+            val item=dataList[position]
+            ARouter.getInstance().build("/player/activity","player").withString("url",item.data.playUrl).withString("title",item.data.title).navigation()
+        }
+        return viewHolder
     }
 
 }

@@ -1,6 +1,6 @@
 package com.test.module.square
 
-data class Square(
+data class Community(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,
@@ -38,24 +38,16 @@ data class Content(
 
 data class Header(
     val actionUrl: String,
-    val cover: Any,
     val followType: String,
-    val font: String,
     val icon: String,
     val iconType: String,
     val id: Int,
     val issuerName: String,
-    val label: Any,
     val labelList: Any,
-    val rightText: Any,
     val showHateVideo: Boolean,
-    val subTitle: Any,
-    val subTitleFont: Any,
     val tagId: Int,
     val tagName: Any,
-    val textAlign: String,
     val time: Long,
-    val title: String,
     val topShow: Boolean
 )
 
@@ -79,13 +71,16 @@ data class DataX(
     val createTime: Long,
     val dataType: String,
     val description: String,
+    val duration: Int,
     val height: Int,
     val id: Int,
     val ifMock: Boolean,
-    val latitude: Int,
+    val latitude: Double,
     val library: String,
-    val longitude: Int,
+    val longitude: Double,
     val owner: Owner,
+    val playUrl: String,
+    val playUrlWatermark: String,
     val privateMessageActionUrl: Any,
     val reallyCollected: Boolean,
     val recentOnceReply: RecentOnceReply,
@@ -96,6 +91,8 @@ data class DataX(
     val status: Int,
     val tags: List<Tag>,
     val title: String,
+    val transId: Any,
+    val type: String,
     val uid: Int,
     val updateTime: Long,
     val url: String,
@@ -103,6 +100,7 @@ data class DataX(
     val urlsWithWatermark: List<String>,
     val validateResult: String,
     val validateStatus: String,
+    val validateTaskId: String,
     val width: Int
 )
 
@@ -166,7 +164,7 @@ data class Tag(
     val id: Int,
     val ifNewest: Boolean,
     val name: String,
-    val newestEndTime: Any,
+    val newestEndTime: Long,
     val tagRecType: String
 )
 
@@ -174,14 +172,16 @@ data class DataXX(
     val actionUrl: String,
     val adTrack: List<Any>,
     val autoPlay: Boolean,
+    val bgPicture: String,
     val dataType: String,
     val description: String,
     val header: HeaderX,
     val id: Int,
     val image: String,
     val label: Label,
-    val labelList: List<Any>,
+    val labelList: List<LabelX>,
     val shade: Boolean,
+    val subTitle: String,
     val title: String
 )
 
@@ -204,5 +204,10 @@ data class HeaderX(
 data class Label(
     val card: String,
     val detail: Any,
+    val text: String
+)
+
+data class LabelX(
+    val actionUrl: Any,
     val text: String
 )

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -48,7 +49,7 @@ class SquareFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         swipeRefreshLayout=view.findViewById(R.id.swipeRefreshLayout)
         recyclerView=view.findViewById(R.id.rv_square)
-        val layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+        val layoutManager= GridLayoutManager(context,2)
         recyclerView.layoutManager=layoutManager
     }
 
