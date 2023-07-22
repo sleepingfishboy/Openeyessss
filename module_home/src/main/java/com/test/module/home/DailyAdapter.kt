@@ -15,37 +15,41 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 
 
-class DailyAdapter(private val dataList: MutableList<Item>) : RecyclerView.Adapter<DailyAdapter.ViewHolder>(){
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val imageView: ImageView =itemView.findViewById(R.id.card_image)
-        val tvTitle: TextView =itemView.findViewById(R.id.card_title)
-        val tvAuthor: TextView =itemView.findViewById(R.id.card_author)
-        val icon:ImageView=itemView.findViewById(R.id.card_icon)
+class DailyAdapter(private val dataList: MutableList<Item>) :
+    RecyclerView.Adapter<DailyAdapter.ViewHolder>() {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageView: ImageView = itemView.findViewById(R.id.card_image)
+        val tvTitle: TextView = itemView.findViewById(R.id.card_title)
+        val tvAuthor: TextView = itemView.findViewById(R.id.card_author)
+        val icon: ImageView = itemView.findViewById(R.id.card_icon)
     }
+
     override fun getItemCount(): Int {
         return dataList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item=dataList[position]
+        val item = dataList[position]
 
-        if (item != null ) {
-            Glide.with(holder.itemView).load(item.data.content.data.cover.detail).into(holder.imageView)
+        if (item != null) {
+            Glide.with(holder.itemView).load(item.data.content.data.cover.detail)
+                .into(holder.imageView)
             Glide.with(holder.itemView).load(item.data.content.data.author.icon).apply(
-                RequestOptions().transform(CircleCrop())).into(holder.icon)
-            holder.tvTitle.text=item.data.content.data.title
-            holder.tvAuthor.text=item.data.content.data.author.name
+                RequestOptions().transform(CircleCrop())
+            ).into(holder.icon)
+            holder.tvTitle.text = item.data.content.data.title
+            holder.tvAuthor.text = item.data.content.data.author.name
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView=
-            LayoutInflater.from(parent.context).inflate(R.layout.item_card,parent,false)
-        val viewHolder=ViewHolder(itemView)
-        viewHolder.imageView.setOnClickListener{
-            val position=viewHolder.adapterPosition
-            val item=dataList[position+1]
-            ARouter.getInstance().build("/player/activity","player").navigation()
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_card, parent, false)
+        val viewHolder = ViewHolder(itemView)
+        viewHolder.imageView.setOnClickListener {
+            val position = viewHolder.adapterPosition
+            val item = dataList[position + 1]
+            ARouter.getInstance().build("/player/activity", "player").navigation()
         }
         return ViewHolder(itemView)
     }
