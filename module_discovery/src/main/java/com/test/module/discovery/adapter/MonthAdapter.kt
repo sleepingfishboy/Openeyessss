@@ -35,7 +35,6 @@ class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
                         .withString("title", item.data.description)
                         .withString("title", item.data.title)
                         .withString("id", item.data.id.toString())
-
                         .navigation()
 
                 }
