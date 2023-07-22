@@ -4,22 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.VideoView
 
-
+@Route(path = "/player/activity", group = "player")
 class PlayerMainActivity : AppCompatActivity() {
     private lateinit var videoView: VideoView
 
-    companion object {
-        fun startActivity(context: Context) {
-            context.startActivity(
-                Intent(
-                    context,
-                    PlayerMainActivity::class.java
-                ).apply {  })
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_main)

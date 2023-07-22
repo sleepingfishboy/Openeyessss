@@ -82,6 +82,7 @@ dependencies {
     //依赖Arouter注解处理器
     kapt "com.alibaba:arouter-compiler:$versions.arouter_version"
     implementation(project(":lib_network"))
+    implementation(project(":lib_common"))
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'

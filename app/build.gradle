@@ -55,5 +55,6 @@ dependencies {
     implementation(project(":module_square"))
     implementation(project(":module_discovery"))
     implementation(project(":module_user"))
+    implementation(project(":module_player"))
 
 }
