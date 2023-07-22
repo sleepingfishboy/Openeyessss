@@ -20,20 +20,20 @@ class SquareFragment : Fragment() {
     private lateinit var squareAdapter: SquareAdapter
     private lateinit var liveData:MutableLiveData<MutableList<Item>>
 
-    private val viewModel by lazy { ViewModelProvider(this).get(SquareViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this)[SquareViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.setDisposable()
         liveData =viewModel.getData() as MutableLiveData<MutableList<Item>>
-        liveData.observe(this, Observer { recommendList->
-            squareAdapter=SquareAdapter(recommendList)
+        liveData.observe(this, Observer { squareList->
+            squareAdapter=SquareAdapter(squareList)
             recyclerView.adapter=squareAdapter
             swipeRefreshLayout.setColorSchemeResources(R.color.black)
             swipeRefreshLayout.setOnRefreshListener {
-                refresh(SquareAdapter(recommendList))
+                refresh(SquareAdapter(squareList))
             }
         })
+        viewModel.setDisposable()
     }
 
     override fun onCreateView(
