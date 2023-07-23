@@ -25,10 +25,10 @@ class DailyFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         viewModel.setDisposable()
-        liveData =viewModel.getData() as MutableLiveData<MutableList<Item>>
-        liveData.observe(this, Observer { dailyList->
-            dailyAdapter=DailyAdapter(dailyList)
-            recyclerView.adapter=dailyAdapter
+        liveData = viewModel.getData() as MutableLiveData<MutableList<Item>>
+        liveData.observe(this, Observer { dailyList ->
+            dailyAdapter = DailyAdapter(dailyList)
+            recyclerView.adapter = dailyAdapter
             swipeRefreshLayout.setColorSchemeResources(R.color.black)
             swipeRefreshLayout.setOnRefreshListener {
                 refresh(DailyAdapter(dailyList))
@@ -47,20 +47,20 @@ class DailyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh_daily)
-        recyclerView=view.findViewById(R.id.rv_daily)
-        val layoutManager: RecyclerView.LayoutManager=
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
-        recyclerView.layoutManager=layoutManager
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh_daily)
+        recyclerView = view.findViewById(R.id.rv_daily)
+        val layoutManager: RecyclerView.LayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
 
     }
 
-    private fun refresh(dailyAdapter: DailyAdapter){
+    private fun refresh(dailyAdapter: DailyAdapter) {
         thread {
             Thread.sleep(1000)
-            run{
+            run {
                 dailyAdapter.notifyDataSetChanged()
-                swipeRefreshLayout.isRefreshing=false
+                swipeRefreshLayout.isRefreshing = false
             }
         }
     }

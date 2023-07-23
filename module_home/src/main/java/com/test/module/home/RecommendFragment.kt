@@ -23,17 +23,17 @@ class RecommendFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var rvAdapter: RvAdapter
-    private lateinit var liveData:MutableLiveData<MutableList<RecommendResponse.Item>>
+    private lateinit var liveData: MutableLiveData<MutableList<RecommendResponse.Item>>
 
     private val viewModel by lazy { ViewModelProvider(this).get(RecommendViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel.setDisposable()
-        liveData =viewModel.getData() as MutableLiveData<MutableList<RecommendResponse.Item>>
-        liveData.observe(this, Observer { recommendList->
-            rvAdapter=RvAdapter(recommendList)
-            recyclerView.adapter=rvAdapter
+        liveData = viewModel.getData() as MutableLiveData<MutableList<RecommendResponse.Item>>
+        liveData.observe(this, Observer { recommendList ->
+            rvAdapter = RvAdapter(recommendList)
+            recyclerView.adapter = rvAdapter
             swipeRefreshLayout.setColorSchemeResources(R.color.black)
             swipeRefreshLayout.setOnRefreshListener {
                 refresh(RvAdapter(recommendList))
@@ -51,18 +51,19 @@ class RecommendFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swipeRefreshLayout=view.findViewById(R.id.swipeRefresh_recommend)
-        recyclerView= requireView().findViewById(R.id.rv_recommend)
-        val layoutManager:RecyclerView.LayoutManager=LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        recyclerView.layoutManager=layoutManager
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh_recommend)
+        recyclerView = requireView().findViewById(R.id.rv_recommend)
+        val layoutManager: RecyclerView.LayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = layoutManager
     }
 
-    private fun refresh(rvAdapter: RvAdapter){
+    private fun refresh(rvAdapter: RvAdapter) {
         thread {
             Thread.sleep(1000)
-            run{
+            run {
                 rvAdapter.notifyDataSetChanged()
-                swipeRefreshLayout.isRefreshing=false
+                swipeRefreshLayout.isRefreshing = false
             }
         }
     }
