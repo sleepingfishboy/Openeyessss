@@ -31,7 +31,7 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
 
-        if (item != null) {
+        if (item != null&&item.data.content.data.author!=null) {
             Glide.with(holder.itemView).load(item.data.content.data.cover.detail)
                 .into(holder.imageView)
             Glide.with(holder.itemView).load(item.data.content.data.author.icon).apply(
@@ -51,7 +51,8 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
             val item = dataList[position]
             ARouter.getInstance().build("/player/activity", "player")
                 .withString("url", item.data.content.data.playUrl)
-                .withString("title", item.data.content.data.title).navigation()
+                .withString("title", item.data.content.data.title)
+                .navigation()
         }
         return viewHolder
     }
