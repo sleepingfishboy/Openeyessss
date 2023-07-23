@@ -31,9 +31,11 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
 
-        if (item != null && item.data.content.data.author != null) {
+        if (item != null) {
             Glide.with(holder.itemView).load(item.data.content.data.cover.detail)
                 .into(holder.imageView)
+        }
+        if (item.data.content.data.author != null){
             Glide.with(holder.itemView).load(item.data.content.data.author.icon).apply(
                 RequestOptions().transform(CircleCrop())
             ).into(holder.icon)
