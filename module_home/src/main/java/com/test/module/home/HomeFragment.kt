@@ -15,7 +15,7 @@ import java.util.*
 
 
 class HomeFragment : Fragment() {
-    private lateinit var viewPager2:ViewPager2
+    private lateinit var viewPager2: ViewPager2
     private lateinit var tabLayout: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,22 +32,26 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewPager2=view.findViewById(R.id.viewPager)
-        viewPager2.isSaveEnabled=false
-        tabLayout=view.findViewById(R.id.tabLayout)
-        val titleList:List<String> =initPageTitleList()
-        val tabLayoutChildViewPager=TabLayoutChildViewPager(requireActivity(),initChildFragment())
-        viewPager2.adapter=tabLayoutChildViewPager
-        TabLayoutMediator(tabLayout,viewPager2){tab,position->
-            tab.text=titleList[position]
+        viewPager2 = view.findViewById(R.id.viewPager)
+        viewPager2.isSaveEnabled = false
+        tabLayout = view.findViewById(R.id.tabLayout)
+        val titleList: List<String> = initPageTitleList()
+        val tabLayoutChildViewPager =
+            TabLayoutChildViewPager(requireActivity(), initChildFragment())
+        viewPager2.adapter = tabLayoutChildViewPager
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+            tab.text = titleList[position]
         }.attach()
     }
 
-    private fun initPageTitleList():List<String>{
-        return listOf("推荐","日报")
+    private fun initPageTitleList(): List<String> {
+        return listOf("推荐", "日报")
     }
 
-    inner class TabLayoutChildViewPager(fragmentActivity: FragmentActivity,private val fragmentList: kotlin.collections.List<Fragment>):FragmentStateAdapter(fragmentActivity){
+    inner class TabLayoutChildViewPager(
+        fragmentActivity: FragmentActivity,
+        private val fragmentList: kotlin.collections.List<Fragment>
+    ) : FragmentStateAdapter(fragmentActivity) {
         override fun getItemCount(): Int {
             return fragmentList.size
         }
@@ -58,9 +62,9 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun initChildFragment():List<Fragment>{
-        val recommendFragment=RecommendFragment()
-        val dailyFragment=DailyFragment()
-        return listOf(recommendFragment,dailyFragment)
+    private fun initChildFragment(): List<Fragment> {
+        val recommendFragment = RecommendFragment()
+        val dailyFragment = DailyFragment()
+        return listOf(recommendFragment, dailyFragment)
     }
 }
