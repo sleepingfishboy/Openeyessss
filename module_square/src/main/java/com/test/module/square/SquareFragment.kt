@@ -17,8 +17,10 @@ import kotlin.concurrent.thread
 
 
 class SquareFragment : Fragment() {
-
     private val viewModel by lazy { ViewModelProvider(this)[SquareViewModel::class.java] }
+    private lateinit var list: List<Int>
+    private lateinit var carouselRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,8 +35,9 @@ class SquareFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val carouselRecyclerView:RecyclerView=view.findViewById(R.id.rv_square)
+        carouselRecyclerView=view.findViewById(R.id.rv_square)
         carouselRecyclerView.layoutManager=CarouselLayoutManager()
-        carouselRecyclerView.adapter=SquareAdapter()
+        list= listOf(R.drawable.ad,R.drawable.exercise,R.drawable.music,R.drawable.drama,R.drawable.funny,R.drawable.food)
+        carouselRecyclerView.adapter=SquareAdapter(list)
     }
 }
