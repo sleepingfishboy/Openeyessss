@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -21,6 +22,10 @@ class PlayerMainActivity : AppCompatActivity() {
 
     @Autowired
     lateinit var title:String
+    @Autowired
+    lateinit var description:String
+    @Autowired
+    lateinit var id:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +36,10 @@ class PlayerMainActivity : AppCompatActivity() {
                     )
             window.statusBarColor = Color.TRANSPARENT
         }
-
         ARouter.getInstance().inject(this)
+        val des: TextView = findViewById(R.id.tv_cv_intro)
+        des.text = description
+
 
         videoView = findViewById(R.id.player)
         videoView.setUrl(url) //设置视频地址
