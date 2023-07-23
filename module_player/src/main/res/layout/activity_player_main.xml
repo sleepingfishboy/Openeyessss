@@ -40,7 +40,7 @@ android:background="@drawable/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_player"
-        app:strokeWidth="0dp">
+        app:strokeWidth="1dp">
 
 
         <TextView
@@ -51,7 +51,7 @@ android:background="@drawable/background"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="与我们一起踏上难忘的旅程，穿越迷人的佐治亚州，这里是葡萄酒的发源地。从崎岖的山脉到连绵起伏的丘陵，从迷人的城镇到繁华的城市，格鲁吉亚以独特的方式融合了旧世界的魅力和现代的便利。跟随我们穿越格鲁吉亚首都第比利斯，鹅卵石街道、古老的教堂、姆茨赫塔修道院、马尔特维利峡谷、遍布全国的葡萄园、迷人的梅斯蒂亚山脉和乌什古利的日出。From Jacob + Katie Schwarz"
+            android:text="描述"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,10 +60,17 @@ android:background="@drawable/background"
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_relevant"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="475dp"
+
+        android:layout_marginTop="4dp"
+
+        android:paddingTop="5dp"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_intro" />
 
