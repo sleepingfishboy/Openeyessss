@@ -46,9 +46,9 @@ class RvAdapter(private val dataList: MutableList<RecommendResponse.Item>) :
 
             ARouter.getInstance().build("/player/activity")
                 .withString("url", item.data.playUrl)
-
+                .withString("description",item.data.description)
                 .withString("title", item.data.title)
-
+                .withString("id",item.data.id.toString())
                 .navigation()
         }
         return viewHolder
