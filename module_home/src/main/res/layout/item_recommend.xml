@@ -33,7 +33,6 @@
                 android:id="@+id/rm_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="title"
                 android:textSize="14sp"
                 android:textAppearance="?attr/textAppearanceTitleMedium" />
 
@@ -42,7 +41,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="secondary_text"
                 android:textSize="10dp"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary" />
