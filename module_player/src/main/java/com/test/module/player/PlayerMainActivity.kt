@@ -45,6 +45,8 @@ class PlayerMainActivity : AppCompatActivity() {
     @Autowired
     lateinit var id: String
 
+    @Autowired
+    lateinit var webUrl: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_main)
@@ -59,7 +61,7 @@ class PlayerMainActivity : AppCompatActivity() {
         val mIvComment: ImageView? = findViewById(R.id.iv_comment)
         val mIvTransmit: ImageView? = findViewById(R.id.iv_transmit)
 
-        mIvTransmit?.setOnClickListener { allShare(this, url) }
+        mIvTransmit?.setOnClickListener { allShare(this, webUrl) }
 
         val des: TextView = findViewById(R.id.tv_cv_intro)
         des.text = description

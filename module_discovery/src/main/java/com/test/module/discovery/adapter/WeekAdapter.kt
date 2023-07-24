@@ -36,6 +36,7 @@ class WeekAdapter : RecyclerView.Adapter<WeekAdapter.ViewHolder>() {
                         .withString("description", item.data.description)
                         .withString("title", item.data.title)
                         .withString("id", item.data.id.toString())
+                        .withString("webUrl", item.data.webUrl.raw)
                         .navigation()
 
                 }
