@@ -22,6 +22,7 @@ class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
         val titleText: TextView = itemView.findViewById(R.id.titleText)
+
         init {
             itemView.setOnClickListener {
                 // 处理item点击事件
@@ -41,19 +42,20 @@ class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        if ( item.data.cover != null) {
+        if (item.data.cover != null) {
             Glide.with(holder.itemView)
                 .load(item.data.cover.detail)
                 .into(holder.backgroundImage)
         }
 
-        if ( item.data != null) {
+        if (item.data != null) {
             holder.titleText.text = item.data.title
         }
     }
