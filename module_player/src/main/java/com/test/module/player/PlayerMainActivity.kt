@@ -55,17 +55,16 @@ class PlayerMainActivity : AppCompatActivity() {
         if (id != null) {
             recyclerView = findViewById(R.id.rv_relevant)
             recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.isNestedScrollingEnabled = false
 
             adapter = RelevantAdapter()
             recyclerView.adapter = adapter
             disposable = ApiManager.getRelatedVideos(id)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe({ relevantVideos ->
+                ?.subscribe { relevantVideos ->
                     adapter.setRelevantData(relevantVideos.itemList)
-                }, { error ->
-                    Log.d("ggg","(:)-->> rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-                })
+                }
         }
 
         videoView = findViewById(R.id.player)
