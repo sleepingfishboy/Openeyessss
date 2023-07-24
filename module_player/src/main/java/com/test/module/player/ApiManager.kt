@@ -18,4 +18,9 @@ object ApiManager {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+    fun getComments(id: String): Observable<Relevant>? {
+        return apiService.getComments(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
 }
