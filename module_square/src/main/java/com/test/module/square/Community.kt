@@ -6,7 +6,7 @@ data class Community(
     val itemList: List<Item>,
     val nextPageUrl: String,
     val total: Int
-)
+){
 
 data class Item(
     val adIndex: Int,
@@ -210,4 +210,4 @@ data class Label(
 data class LabelX(
     val actionUrl: Any,
     val text: String
-)
+)}

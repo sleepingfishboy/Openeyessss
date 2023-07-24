@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 
@@ -27,6 +28,10 @@ class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<Squar
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView=
             LayoutInflater.from(parent.context).inflate(R.layout.item_carousel,parent,false)
-        return ViewHolder(itemView)
+        val viewHolder=ViewHolder(itemView)
+        viewHolder.imageView.setOnClickListener{
+            ARouter.getInstance().build("/tag/activity").navigation()
+        }
+        return viewHolder
     }
 }
