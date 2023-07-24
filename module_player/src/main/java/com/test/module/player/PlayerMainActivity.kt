@@ -1,11 +1,15 @@
 package com.test.module.player
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +31,7 @@ class PlayerMainActivity : AppCompatActivity() {
     private lateinit var videoView: VideoView
     private var disposable: Disposable? = null
     private lateinit var adapter: RelevantAdapter
+
 
     @Autowired
     lateinit var url: String
@@ -50,12 +55,18 @@ class PlayerMainActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
         ARouter.getInstance().inject(this)
+        val mIvLike: ImageView? = findViewById(R.id.iv_like)
+        val mIvComment: ImageView? = findViewById(R.id.iv_comment)
+        val mIvTransmit: ImageView? = findViewById(R.id.iv_transmit)
+
+        mIvTransmit?.setOnClickListener { allShare(this, url) }
+
         val des: TextView = findViewById(R.id.tv_cv_intro)
         des.text = description
         if (id != null) {
             recyclerView = findViewById(R.id.rv_relevant)
             recyclerView.layoutManager = LinearLayoutManager(this)
-                recyclerView.isNestedScrollingEnabled = false
+            recyclerView.isNestedScrollingEnabled = false
 
             adapter = RelevantAdapter()
             recyclerView.adapter = adapter
@@ -75,6 +86,21 @@ class PlayerMainActivity : AppCompatActivity() {
         videoView.setVideoController(controller) //设置控制器
 
         videoView.start() //开始播放，不调用则不自动播放
+    }
+
+    fun allShare(context: Context, content: String) {
+        val intent = Intent()
+        // 设置分享行为
+        intent.action = Intent.ACTION_SEND
+        // 设置分享内容的类型
+        intent.type = "text/plain"
+        // 添加分享内容标题
+        intent.putExtra(Intent.EXTRA_SUBJECT, "好好")
+        // 添加分享内容
+        intent.putExtra(Intent.EXTRA_TEXT, content)
+        // 创建分享的 Dialog
+        val shareIntent = Intent.createChooser(intent, "")
+        context.startActivity(shareIntent)
     }
 
     override fun onPause() {
