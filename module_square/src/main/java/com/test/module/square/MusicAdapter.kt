@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 
-class TagAdapter(private val dataList: MutableList<Advertisement.Item>):RecyclerView.Adapter<TagAdapter.ViewHolder>() {
-    inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
-        val imageView:ImageView=itemView.findViewById(R.id.image_view)
-        val tvTitle:TextView=itemView.findViewById(R.id.title)
-        val tvAuthor:TextView=itemView.findViewById(R.id.tag)
+class MusicAdapter (private val dataList: MutableList<Music.Item>): RecyclerView.Adapter<MusicAdapter.ViewHolder>() {
+    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val imageView: ImageView =itemView.findViewById(R.id.image_view)
+        val tvTitle: TextView =itemView.findViewById(R.id.title)
+        val tvAuthor: TextView =itemView.findViewById(R.id.tag)
     }
 
     override fun getItemCount(): Int {
@@ -31,7 +31,7 @@ class TagAdapter(private val dataList: MutableList<Advertisement.Item>):Recycler
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.item_tag,parent,false)
+        val itemView= LayoutInflater.from(parent.context).inflate(R.layout.item_tag,parent,false)
         val viewHolder=ViewHolder(itemView)
         viewHolder.itemView.setOnClickListener {
             val position=viewHolder.adapterPosition

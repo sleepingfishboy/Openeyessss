@@ -1,5 +1,6 @@
 package com.test.module.square
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,12 @@ class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<Squar
             LayoutInflater.from(parent.context).inflate(R.layout.item_carousel,parent,false)
         val viewHolder=ViewHolder(itemView)
         viewHolder.imageView.setOnClickListener{
-            ARouter.getInstance().build("/tag/activity").navigation()
+            val position = viewHolder.adapterPosition
+            val item=dataList[position]
+            val intent=Intent(itemView.context,TagActivity::class.java)
+            intent.putExtra("position",position)
+            intent.putExtra("imageID",item)
+            itemView.context.startActivity(intent)
         }
         return viewHolder
     }
