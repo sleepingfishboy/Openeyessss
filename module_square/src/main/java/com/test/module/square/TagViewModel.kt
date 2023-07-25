@@ -10,32 +10,147 @@ import network.ApiManager
 
 class TagViewModel:ViewModel() {
     private var disposable:Disposable?=null
-    private var dataList:MutableLiveData<MutableList<Advertisement.Item>>?=null
-
-    fun getData():LiveData<MutableList<Advertisement.Item>>{
-        if (dataList == null) {
-            dataList = MutableLiveData()
-        }
-        return dataList!!
-    }
+    private var adDataList:MutableLiveData<MutableList<Advertisement.Item>>?=null
+    private var exeDataList:MutableLiveData<MutableList<Exercise.Item>>?=null
+    private var musicDataList:MutableLiveData<MutableList<Music.Item>>?=null
+    private var dramaDataList:MutableLiveData<MutableList<Drama.Item>>?=null
+    private var funnyDataList:MutableLiveData<MutableList<Funny.Item>>?=null
+    private var foodDataList:MutableLiveData<MutableList<Food.Item>>?=null
 
     fun setDisposable(id:Int){
         when(id){
-            1->disposable = ApiManager.getAd()
+            0->disposable = ApiManager.getAd()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.subscribe { data ->
                     setAdData(data.itemList)
                 }
+            1->disposable = ApiManager.getExercise()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe { data ->
+                    setExeData(data.itemList)
+                }
+            2->disposable = ApiManager.getMusic()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe { data ->
+                    setMusicData(data.itemList)
+                }
+            3->disposable = ApiManager.getDrama()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe { data ->
+                    setDramaData(data.itemList)
+                }
+            4->disposable = ApiManager.getFunny()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe { data ->
+                    setFunnyData(data.itemList)
+                }
+            5->disposable = ApiManager.getFood()
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe { data ->
+                    setFoodData(data.itemList)
+                }
         }
     }
 
-    private fun setAdData(adItems:List<Advertisement.Item>){
-        val adList= mutableListOf<Advertisement.Item>()
-        for (i in adItems.indices){
-            if (adItems[i].data.content.data!=null)
-                adList.add(adItems[i])
+    private fun setAdData(items:List<Advertisement.Item>){
+        val list= mutableListOf<Advertisement.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
         }
-        dataList?.value=adList
+        adDataList?.value=list
+    }
+
+    fun getAdData():LiveData<MutableList<Advertisement.Item>>{
+        if (adDataList == null) {
+            adDataList = MutableLiveData()
+        }
+        return adDataList!!
+    }
+
+    private fun setExeData(items:List<Exercise.Item>){
+        val list= mutableListOf<Exercise.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
+        }
+        exeDataList?.value=list
+    }
+
+    fun getExeData():LiveData<MutableList<Exercise.Item>>{
+        if (exeDataList==null){
+            exeDataList= MutableLiveData()
+        }
+        return exeDataList!!
+    }
+
+    private fun setMusicData(items:List<Music.Item>){
+        val list= mutableListOf<Music.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
+        }
+        musicDataList?.value=list
+    }
+
+    fun getMusicData():LiveData<MutableList<Music.Item>>{
+        if (musicDataList==null){
+            musicDataList= MutableLiveData()
+        }
+        return musicDataList!!
+    }
+
+    private fun setDramaData(items:List<Drama.Item>){
+        val list= mutableListOf<Drama.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
+        }
+        dramaDataList?.value=list
+    }
+
+    fun getDramaData():LiveData<MutableList<Drama.Item>>{
+        if (dramaDataList==null){
+            dramaDataList= MutableLiveData()
+        }
+        return dramaDataList!!
+    }
+
+    private fun setFunnyData(items:List<Funny.Item>){
+        val list= mutableListOf<Funny.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
+        }
+        funnyDataList?.value=list
+    }
+
+    fun getFunnyData():LiveData<MutableList<Funny.Item>>{
+        if (funnyDataList==null){
+            funnyDataList= MutableLiveData()
+        }
+        return funnyDataList!!
+    }
+
+    private fun setFoodData(items:List<Food.Item>){
+        val list= mutableListOf<Food.Item>()
+        for (i in items.indices){
+            if (items[i].data.content.data!=null)
+                list.add(items[i])
+        }
+        foodDataList?.value=list
+    }
+
+    fun getFoodData():LiveData<MutableList<Food.Item>>{
+        if (foodDataList==null){
+            foodDataList= MutableLiveData()
+        }
+        return foodDataList!!
     }
 }
