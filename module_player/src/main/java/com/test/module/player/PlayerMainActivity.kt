@@ -134,6 +134,7 @@ class PlayerMainActivity : AppCompatActivity() {
         videoView.setVideoController(controller) //设置控制器
 
         videoView.start() //开始播放，不调用则不自动播放
+
     }
 
     private fun allShare(context: Context, content: String) {
