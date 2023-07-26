@@ -31,9 +31,11 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
 
-        if (item != null && item.data.content.data.author != null) {
+        if (item != null) {
             Glide.with(holder.itemView).load(item.data.content.data.cover.detail)
                 .into(holder.imageView)
+        }
+        if (item.data.content.data.author != null){
             Glide.with(holder.itemView).load(item.data.content.data.author.icon).apply(
                 RequestOptions().transform(CircleCrop())
             ).into(holder.icon)
@@ -53,7 +55,7 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
                 .withString("url", item.data.content.data.playUrl)
                 .withString("description", item.data.content.data.description)
                 .withString("title", item.data.content.data.title)
-                .withString("id", item.data.id.toString())
+                .withString("id", item.data.header.id.toString())
                 .navigation()
 
         }

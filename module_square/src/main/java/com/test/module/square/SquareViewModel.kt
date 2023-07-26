@@ -9,12 +9,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import network.ApiManager
 
 class SquareViewModel:ViewModel() {
-    private var dataList:MutableLiveData<MutableList<Item>> ?=null
+    private var dataList:MutableLiveData<List<String>> ?=null
 
-    fun getData(): LiveData<MutableList<Item>> {
+    fun getData(): LiveData<List<String>> {
         if (dataList==null){
             dataList= MutableLiveData()
         }
         return dataList!!
     }
+
 }

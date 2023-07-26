@@ -80,6 +80,25 @@ class PlayerMainActivity : AppCompatActivity() {
 
         mIvDownload?.setOnClickListener {
             mVibrator.vibrate(50)
+            Log.d("ggg","(:)-->> 下载")
+            Toast.makeText(this, "开始下载", Toast.LENGTH_SHORT).show()
+            val mDownloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+
+
+            val resource = Uri.parse(url)
+
+            val request = DownloadManager.Request(resource)
+
+            request.setDestinationInExternalPublicDir("Download","$title.mp4")
+
+
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            request.setVisibleInDownloadsUi(true)
+
+
+
+            mDownloadManager.enqueue(request)
 
         }
 
