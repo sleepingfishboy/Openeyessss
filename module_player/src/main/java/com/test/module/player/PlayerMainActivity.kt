@@ -152,7 +152,7 @@ class PlayerMainActivity : AppCompatActivity() {
         controller.addDefaultControlComponent(title, false)
         videoView.setVideoController(controller) //设置控制器
 
-        videoView.start() //开始播放，不调用则不自动播放
+        videoView.start()
 
     }
 
