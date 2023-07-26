@@ -1,9 +1,12 @@
 package com.test.module.square
 
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
@@ -36,6 +39,13 @@ class TagActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tag)
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    )
+            window.statusBarColor = Color.TRANSPARENT
+        }
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         recyclerView = findViewById(R.id.rv_tag)
