@@ -20,7 +20,6 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
     private val itemList: MutableList<CommentBean.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val avatarImage: ImageView = itemView.findViewById(R.id.iv_avatar)
         val titleText: TextView = itemView.findViewById(R.id.tv_comment)
     }
 
@@ -32,14 +31,10 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        if (item.data.user != null) {
-            Glide.with(holder.itemView)
-                .load(item.data.user.avatar)
-                .into(holder.avatarImage)
-        }
+
 
         if (item.data != null) {
-            holder.titleText.text = item.data.user?.nickname + "•" + item.data.message
+            holder.titleText.text = item.data.user?.nickname + " 评论：" + item.data.message
         }
     }
 
