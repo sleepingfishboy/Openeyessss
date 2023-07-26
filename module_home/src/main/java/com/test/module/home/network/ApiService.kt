@@ -13,7 +13,7 @@ interface ApiService {
     @GET("api/v5/index/tab/allRec")
     fun getRecommend(): Observable<RecommendResponse>
 
-    @GET("api/v5/index/tab/feed")
+    @GET("api/v5/index/tab/feed?num=100")
     fun getDaily():Observable<Daily>
 
     @GET("api/v5/index/tab/allRec")

@@ -67,6 +67,7 @@ class RecommendFragment : Fragment() {
                 is LoadState.Error->{
                     val state=it.refresh as LoadState.Error
                     progressBar.visibility=View.INVISIBLE
+                    Log.d("recommend", "error = ${state.error.message}: ")
                 }
             }
         }

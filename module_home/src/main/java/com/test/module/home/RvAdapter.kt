@@ -38,7 +38,7 @@ class RvAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
 
-        if (item != null && item.data.cover != null) {
+        if (item != null && item.data.cover != null&&item.data.author!=null) {
             Glide.with(holder.itemView).load(item.data.cover.detail).into(holder.imageView)
             holder.tvTitle.text = item.data.title
             holder.tvAuthor.text = item.data.author.name
@@ -54,12 +54,13 @@ class RvAdapter :
             val position = viewHolder.adapterPosition
             val item = getItem(position)
 
-            if (item != null) {
+            if (item != null&&item.data.author!=null&&item.data.title!=null) {
                 ARouter.getInstance().build("/player/activity")
                     .withString("url", item.data.playUrl)
                     .withString("description",item.data.description)
                     .withString("title", item.data.title)
                     .withString("id",item.data.id.toString())
+                    .withString("webUrl",item.data.webUrl.raw)
                     .navigation()
             }
         }
