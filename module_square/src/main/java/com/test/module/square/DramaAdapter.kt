@@ -42,6 +42,7 @@ class DramaAdapter (private val dataList: MutableList<Drama.Item>): RecyclerView
                 .withString("description",item.data.content.data.description)
                 .withString("title", item.data.content.data.title)
                 .withString("id",item.data.content.data.id.toString())
+                .withString("id",item.data.content.data.webUrl.raw)
                 .navigation()
         }
         return viewHolder

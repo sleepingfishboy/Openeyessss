@@ -42,6 +42,7 @@ class AdAdapter(private val dataList: MutableList<Advertisement.Item>):RecyclerV
                 .withString("description",item.data.content.data.description)
                 .withString("title", item.data.content.data.title)
                 .withString("id",item.data.content.data.id.toString())
+                .withString("webUrl",item.data.content.data.webUrl.raw)
                 .navigation()
         }
         return viewHolder

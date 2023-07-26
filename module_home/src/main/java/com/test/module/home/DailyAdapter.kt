@@ -56,6 +56,7 @@ class DailyAdapter(private val dataList: MutableList<Item>) :
                 .withString("description", item.data.content.data.description)
                 .withString("title", item.data.content.data.title)
                 .withString("id", item.data.header.id.toString())
+                .withString("webUrl",item.data.content.data.webUrl.raw)
                 .navigation()
 
         }

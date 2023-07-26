@@ -9,10 +9,14 @@ class RecPagingSource(private val apiService: ApiService):PagingSource<Int,AllRe
             val page=params.key?:1
             val pageSize=params.loadSize
             val rec=apiService.searchRec(page,pageSize)
-            val recItems=rec.itemList
+            val itemList= mutableListOf<AllRec.Item>()
+            for (i in rec.itemList.indices){
+                if (rec.itemList[i].data.title!=null)
+                    itemList.add(rec.itemList[i])
+            }
             val prevKey=if (page>1)page-1 else null
-            val nextKey=if (recItems.isNotEmpty()) page+1 else null
-            LoadResult.Page(recItems,prevKey,nextKey)
+            val nextKey= if (itemList.isNotEmpty()) page + 1 else null
+            LoadResult.Page(itemList, prevKey, nextKey)
         } catch (e:Exception){
             LoadResult.Error(e)
         }

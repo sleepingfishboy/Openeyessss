@@ -22,8 +22,8 @@ class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<Squar
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item=dataList[position]
-
-        Glide.with(holder.itemView).load(item).into(holder.imageView)
+        if (item!=null){
+            Glide.with(holder.itemView).load(item).into(holder.imageView)}
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
