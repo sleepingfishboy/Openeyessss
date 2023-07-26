@@ -42,6 +42,7 @@ class MusicAdapter (private val dataList: MutableList<Music.Item>): RecyclerView
                 .withString("description",item.data.content.data.description)
                 .withString("title", item.data.content.data.title)
                 .withString("id",item.data.content.data.id.toString())
+                .withString("webUrl",item.data.content.data.webUrl.raw)
                 .navigation()
         }
         return viewHolder
