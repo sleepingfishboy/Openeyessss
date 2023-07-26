@@ -34,6 +34,7 @@ class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
                         .withString("description", item.data.description)
                         .withString("title", item.data.title)
                         .withString("id", item.data.id.toString())
+                        .withString("webUrl", item.data.webUrl.raw)
                         .navigation()
 
                 }
@@ -43,7 +44,7 @@ class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_relevant, parent, false)
         return ViewHolder(view)
     }
 

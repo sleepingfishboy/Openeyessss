@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         app:cardBackgroundColor="#00000000"
-        app:cardElevation="8dp"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="#FFFFFF"
+                android:background="#E0FFFFFF"
                 android:padding="8dp"
                 android:textColor="#595B5D"
                 android:textSize="16sp"

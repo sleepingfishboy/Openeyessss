@@ -18,8 +18,8 @@ object ApiManager {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
-    fun getComments(id: String): Observable<Relevant>? {
-        return apiService.getComments(id)
+    fun getComments(videoId: String): Observable<CommentBean>? {
+        return apiService.getComments(videoId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

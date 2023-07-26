@@ -31,9 +31,11 @@
         </xyz.doikki.videoplayer.player.VideoView>
     </com.google.android.material.card.MaterialCardView>
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_player">
@@ -83,18 +85,23 @@
                     <ImageView
                         android:id="@+id/iv_like"
                         android:layout_width="65dp"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/like" />
                     <ImageView
                         android:id="@+id/iv_comment"
                         android:layout_width="65dp"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/comment" />
                     <ImageView
                         android:id="@+id/iv_transmit"
                         android:layout_width="65dp"
-                        android:layout_height="40dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/transmit" />
+                    <ImageView
+                        android:id="@+id/iv_download"
+                        android:layout_width="65dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/download" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
