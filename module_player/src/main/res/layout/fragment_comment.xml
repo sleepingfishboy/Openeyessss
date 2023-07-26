@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_user"
-    tools:context=".fragment.TotalFragment">
+    tools:context=".CommentFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_total"
+        android:id="@+id/rv_comment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </FrameLayout>

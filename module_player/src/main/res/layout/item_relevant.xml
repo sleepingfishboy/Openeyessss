@@ -7,7 +7,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_margin="12dp"
         app:cardBackgroundColor="#00000000"
         app:cardElevation="8dp"
@@ -21,8 +21,7 @@
             <ImageView
                 android:id="@+id/backgroundImage"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -33,13 +32,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:background="#FFFFFF"
+                android:layout_marginTop="80dp"
+                android:background="#E6FFFFFF"
                 android:padding="8dp"
                 android:textColor="#595B5D"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.958"
                 app:layout_constraintStart_toEndOf="@+id/backgroundImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>
