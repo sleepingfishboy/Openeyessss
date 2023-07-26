@@ -38,8 +38,7 @@ class SquareFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         carouselRecyclerView=view.findViewById(R.id.rv_square)
         carouselRecyclerView.layoutManager=CarouselLayoutManager()
-        list= mutableListOf(R.drawable.ad,
-            R.drawable.exercise,R.drawable.music,R.drawable.funny,R.drawable.food)
+        list= mutableListOf(R.drawable.ad,R.drawable.exercise,R.drawable.music,R.drawable.drama,R.drawable.funny,R.drawable.food)
         carouselRecyclerView.adapter=SquareAdapter(list)
     }
 }
