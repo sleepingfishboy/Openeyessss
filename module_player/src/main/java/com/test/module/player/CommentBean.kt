@@ -8,12 +8,10 @@ class CommentBean(
     val total: Int
 ) {
     class Item(
-        val adIndex: Int,
+
         val `data`: Data,
         val id: Int,
-        val tag: Any,
-        val trackingData: Any,
-        val type: String
+
     ) {
         class Data(
             val actionUrl: Any,
@@ -58,7 +56,7 @@ class CommentBean(
                     val actionUrl: String,
                     val area: Any,
                     val avatar: String,
-                    val birthday: Any,
+
                     val city: Any,
                     val country: Any,
                     val cover: String,
