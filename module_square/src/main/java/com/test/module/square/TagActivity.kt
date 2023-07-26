@@ -1,5 +1,6 @@
 package com.test.module.square
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -36,6 +37,7 @@ class TagActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tag)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         recyclerView = findViewById(R.id.rv_tag)
         toolbar=findViewById(R.id.toolbar)
         collapsingToolBar=findViewById(R.id.collapsingToolbar)
