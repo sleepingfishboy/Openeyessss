@@ -30,6 +30,7 @@ class MonthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_month, container, false)
+        swipeRefreshLayout = view.findViewById(R.id.srl_month)
 
         recyclerView = view.findViewById(R.id.rv_month)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -39,7 +40,7 @@ class MonthFragment : Fragment() {
         swipeRefreshLayout.setOnRefreshListener {
             loadData() // 在刷新时重新加载数据
         }
-
+        loadData()
         return view
     }
 

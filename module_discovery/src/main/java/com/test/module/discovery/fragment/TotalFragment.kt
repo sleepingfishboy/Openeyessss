@@ -29,7 +29,7 @@ class TotalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_total, container, false)
-
+        swipeRefreshLayout = view.findViewById(R.id.srl_total)
         recyclerView = view.findViewById(R.id.rv_total)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
