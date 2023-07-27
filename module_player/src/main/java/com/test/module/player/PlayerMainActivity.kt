@@ -140,9 +140,17 @@ class PlayerMainActivity : AppCompatActivity() {
             disposable = ApiManager.getRelatedVideos(id)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { relevantVideos ->
-                    adapter.setRelevantData(relevantVideos.itemList)
-                }
+                ?.subscribe({ relevantVideos ->
+                    try {
+                        adapter.setRelevantData(relevantVideos.itemList)
+                    } catch (e: Exception) {
+                        // 处理设置数据时可能发生的异常
+                        e.printStackTrace()
+                    }
+                }, { error ->
+                    // 处理订阅过程中可能发生的错误
+                    error.printStackTrace()
+                })
         }
 
         videoView = findViewById(R.id.player)

@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -42,9 +43,16 @@ class CommentFragment : BottomSheetDialogFragment() {
             ApiManager.getComments(it)
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe {commentItems ->
-                    adapter.setCommentData(commentItems.itemList)
+                ?.onErrorResumeNext { throwable: Throwable ->
+                    Observable.error(Exception("API Error: ${throwable.message}"))
                 }
+                ?.subscribe({ commentItems ->
+                    adapter.setCommentData(commentItems.itemList)
+                }, { error ->
+                    // 处理订阅过程中可能发生的错误
+                    error.printStackTrace()
+                    // 显示错误提示或执行其他适当的错误处理操作
+                })
         }
 
         return view
