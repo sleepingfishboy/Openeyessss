@@ -11,9 +11,10 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.GlideBuilder
 
-class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<SquareAdapter.ViewHolder>() {
+class SquareAdapter(private val dataList: List<String>): RecyclerView.Adapter<SquareAdapter.ViewHolder>() {
     inner class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val imageView:ImageView=itemView.findViewById(R.id.carousel_image_view1)
+        val textView:TextView=itemView.findViewById(R.id.carousel_text_view)
     }
 
     override fun getItemCount(): Int {
@@ -24,6 +25,7 @@ class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<Squar
         val item=dataList[position]
         if (item!=null){
             Glide.with(holder.itemView).load(item).into(holder.imageView)}
+        holder.textView.text=item
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,10 +34,8 @@ class SquareAdapter(private val dataList: List<Int>): RecyclerView.Adapter<Squar
         val viewHolder=ViewHolder(itemView)
         viewHolder.imageView.setOnClickListener{
             val position = viewHolder.adapterPosition
-            val item=dataList[position]
             val intent=Intent(itemView.context,TagActivity::class.java)
             intent.putExtra("position",position)
-            intent.putExtra("imageID",item)
             itemView.context.startActivity(intent)
         }
         return viewHolder

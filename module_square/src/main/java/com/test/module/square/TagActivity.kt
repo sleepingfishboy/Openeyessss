@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -33,7 +34,7 @@ class TagActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var collapsingToolBar:CollapsingToolbarLayout
     private lateinit var image:ImageView
-    var imageID:Int=0
+    private lateinit var textView: TextView
 
     private val viewModel by lazy { ViewModelProvider(this).get(TagViewModel::class.java)  }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,22 +47,22 @@ class TagActivity : AppCompatActivity() {
                     )
             window.statusBarColor = Color.TRANSPARENT
         }
-
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         recyclerView = findViewById(R.id.rv_tag)
         toolbar=findViewById(R.id.toolbar)
         collapsingToolBar=findViewById(R.id.collapsingToolbar)
         image=findViewById(R.id.image)
+        textView=findViewById(R.id.tag_text_view)
         val layoutManager: RecyclerView.LayoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
         val position=intent.getIntExtra("position",0)
         init(position)
-        imageID=intent.getIntExtra("imageID",0)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         collapsingToolBar.title=tagName
-        Glide.with(this).load(imageID).into(image)
+        textView.text=tagName
     }
 
     private fun init(id:Int){
@@ -118,7 +119,7 @@ class TagActivity : AppCompatActivity() {
                     val adapter=FoodAdapter(list)
                     recyclerView.adapter=adapter
                 })
-                tagName="开胃"
+                tagName="美食"
             }
         }
     }

@@ -15,5 +15,21 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ad"/>
+        android:background="@color/white"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/carousel_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="Test"
+            android:textColor="#E39BAC"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.carousel.MaskableFrameLayout>

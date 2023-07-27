@@ -16,7 +16,8 @@
                 android:layout_height="wrap_content"
                 android:text="分类"
                 android:textSize="30dp"
-                android:layout_margin="12dp"/>
+                android:layout_margin="12dp"
+                android:textColor="@color/white"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_square"
                 android:layout_width="match_parent"
