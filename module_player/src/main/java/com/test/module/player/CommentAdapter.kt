@@ -15,31 +15,57 @@ import com.bumptech.glide.Glide
 
  */
 
-class CommentAdapter : RecyclerView.Adapter<CommentAdapter.ViewHolder>() {
-
+class CommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val itemList: MutableList<CommentBean.Item> = mutableListOf()
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val VIEW_TYPE_COMMENT = 0
+    private val VIEW_TYPE_EMPTY = 1
+
+    inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleText: TextView = itemView.findViewById(R.id.tv_comment)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_comments, parent, false)
-        return ViewHolder(view)
+    inner class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val emptyText: TextView = itemView.findViewById(R.id.tv_empty_comment)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = itemList[position]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            VIEW_TYPE_COMMENT -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_comments, parent, false)
+                CommentViewHolder(view)
+            }
+            VIEW_TYPE_EMPTY -> {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.item_comments, parent, false)
+                EmptyViewHolder(view)
+            }
+            else -> throw IllegalArgumentException("Invalid view type")
+        }
+    }
 
-
-        if (item.data != null) {
-            holder.titleText.text = item.data.user?.nickname + " 评论：" + item.data.message
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is CommentViewHolder -> {
+                val item = itemList[position]
+                if (item.data != null) {
+                    holder.titleText.text =
+                        item.data.user?.nickname + " 评论：" + item.data.message
+                }
+            }
+            is EmptyViewHolder -> {
+                holder.emptyText.text = "还没有评论哦"+"\n"+" "
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return if (itemList.isEmpty()) 1 else itemList.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (itemList.isEmpty()) VIEW_TYPE_EMPTY else VIEW_TYPE_COMMENT
     }
 
     fun setCommentData(commentItems: List<CommentBean.Item>) {
