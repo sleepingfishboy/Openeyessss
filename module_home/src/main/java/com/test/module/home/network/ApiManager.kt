@@ -6,7 +6,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.test.module.home.AllRec
 import com.test.module.home.Daily
-import com.test.module.home.RecommendResponse
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -19,11 +18,6 @@ object ApiManager {
     }
 
     private const val PAGE_SIZE=50
-
-    fun getRecommend(): Observable<RecommendResponse>? {
-        return apiService.getRecommend().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
 
     fun getDaily(): Observable<Daily>? {
         return apiService.getDaily().subscribeOn(Schedulers.io())
