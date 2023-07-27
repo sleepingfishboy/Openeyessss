@@ -52,32 +52,9 @@ class TagActivity : AppCompatActivity() {
 
             if (isConnected) {
                 // 网络已连接，执行相应操作
-                recyclerView = findViewById(R.id.rv_tag)
-                toolbar=findViewById(R.id.toolbar)
-                collapsingToolBar=findViewById(R.id.collapsingToolbar)
-                image=findViewById(R.id.image)
-                textView=findViewById(R.id.tag_text_view)
-                val layoutManager: RecyclerView.LayoutManager =
-                    LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
-                recyclerView.layoutManager = layoutManager
-                val position=intent.getIntExtra("position",0)
-                init(position)
-                setSupportActionBar(toolbar)
-                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                collapsingToolBar.title=tagName
-                textView.text=tagName
             } else {
                 // 网络已断开，显示错误信息
                 Toast.makeText(context,"网络连接已断开", Toast.LENGTH_SHORT).show()
-                recyclerView = findViewById(R.id.rv_tag)
-                toolbar=findViewById(R.id.toolbar)
-                collapsingToolBar=findViewById(R.id.collapsingToolbar)
-                image=findViewById(R.id.image)
-                textView=findViewById(R.id.tag_text_view)
-                val layoutManager: RecyclerView.LayoutManager =
-                    LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
-                recyclerView.layoutManager = layoutManager
-                val position=intent.getIntExtra("position",0)
             }
         }
     }
