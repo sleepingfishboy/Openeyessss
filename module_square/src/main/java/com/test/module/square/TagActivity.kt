@@ -1,7 +1,12 @@
 package com.test.module.square
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +14,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,6 +43,44 @@ class TagActivity : AppCompatActivity() {
     private lateinit var textView: TextView
 
     private val viewModel by lazy { ViewModelProvider(this).get(TagViewModel::class.java)  }
+    private val networkChangeReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            // 处理网络变化情况
+            val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager.activeNetworkInfo
+            val isConnected = networkInfo != null && networkInfo.isConnected
+
+            if (isConnected) {
+                // 网络已连接，执行相应操作
+                recyclerView = findViewById(R.id.rv_tag)
+                toolbar=findViewById(R.id.toolbar)
+                collapsingToolBar=findViewById(R.id.collapsingToolbar)
+                image=findViewById(R.id.image)
+                textView=findViewById(R.id.tag_text_view)
+                val layoutManager: RecyclerView.LayoutManager =
+                    LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
+                recyclerView.layoutManager = layoutManager
+                val position=intent.getIntExtra("position",0)
+                init(position)
+                setSupportActionBar(toolbar)
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                collapsingToolBar.title=tagName
+                textView.text=tagName
+            } else {
+                // 网络已断开，显示错误信息
+                Toast.makeText(context,"网络连接已断开", Toast.LENGTH_SHORT).show()
+                recyclerView = findViewById(R.id.rv_tag)
+                toolbar=findViewById(R.id.toolbar)
+                collapsingToolBar=findViewById(R.id.collapsingToolbar)
+                image=findViewById(R.id.image)
+                textView=findViewById(R.id.tag_text_view)
+                val layoutManager: RecyclerView.LayoutManager =
+                    LinearLayoutManager(parent, LinearLayoutManager.VERTICAL, false)
+                recyclerView.layoutManager = layoutManager
+                val position=intent.getIntExtra("position",0)
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tag)
@@ -48,6 +92,9 @@ class TagActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        registerReceiver(networkChangeReceiver, filter)
 
         recyclerView = findViewById(R.id.rv_tag)
         toolbar=findViewById(R.id.toolbar)
@@ -63,6 +110,12 @@ class TagActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         collapsingToolBar.title=tagName
         textView.text=tagName
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        unregisterReceiver(networkChangeReceiver)
     }
 
     private fun init(id:Int){

@@ -1,5 +1,6 @@
 package com.test.module.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,9 +24,13 @@ class DailyViewModel : ViewModel() {
         disposable = ApiManager.getDaily()
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe { daily ->
+            ?.subscribe ({ daily ->
                 setDailyData(daily.itemList)
-            }
+            },
+                { throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
     }
 
     private fun setDailyData(dailyItems: List<Item>) {

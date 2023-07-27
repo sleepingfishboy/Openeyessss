@@ -10,8 +10,8 @@
         android:title="广场"/>
     <item
         android:id="@+id/discoveryFragment"
-        android:icon="@drawable/ic_discovery"
-        android:title="发现"/>
+        android:icon="@drawable/ic_rank"
+        android:title="排行"/>
     <item
         android:id="@+id/userFragment"
         android:icon="@drawable/ic_user"
