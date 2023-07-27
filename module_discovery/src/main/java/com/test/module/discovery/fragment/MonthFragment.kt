@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.test.module.discovery.R
 import com.test.module.discovery.adapter.MonthAdapter
 import com.test.module.discovery.network.ApiManager
@@ -20,6 +22,8 @@ class MonthFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MonthAdapter
     private var disposable: Disposable? = null
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +36,9 @@ class MonthFragment : Fragment() {
 
         adapter = MonthAdapter()
         recyclerView.adapter = adapter
-
-        disposable = ApiManager.getMonthly()
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe { monthly ->
-                Log.d("ggg",monthly.itemList.toString())
-                adapter.setMonthlyData(monthly.itemList)
-            }
+        swipeRefreshLayout.setOnRefreshListener {
+            loadData() // 在刷新时重新加载数据
+        }
 
         return view
     }
@@ -47,6 +46,23 @@ class MonthFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         disposable?.dispose()
+    }
+
+    private fun loadData() {
+        disposable = ApiManager.getMonthly()
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.doOnSubscribe { swipeRefreshLayout.isRefreshing = true } // 显示刷新状态
+            ?.doFinally { swipeRefreshLayout.isRefreshing = false } // 隐藏刷新状态
+            ?.subscribe({ monthly ->
+                Log.d("ggg", monthly.itemList.toString())
+                adapter.setMonthlyData(monthly.itemList)
+            }, { error ->
+                // 处理订阅过程中可能发生的错误
+                error.printStackTrace()
+                Toast.makeText(context, "看一下有没有联网哦~", Toast.LENGTH_SHORT).show()
+                // 显示错误提示或执行其他适当的错误处理操作
+            })
     }
 
 }
