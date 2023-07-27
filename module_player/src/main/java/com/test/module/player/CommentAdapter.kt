@@ -26,7 +26,7 @@ class CommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     inner class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val emptyText: TextView = itemView.findViewById(R.id.tv_empty_comment)
+        val emptyText: TextView = itemView.findViewById(R.id.tv_comment)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -55,7 +55,7 @@ class CommentAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 }
             }
             is EmptyViewHolder -> {
-                holder.emptyText.text = "还没有评论哦"+"\n"+" "
+                holder.emptyText.text ="\n"+ "                    评论被吃了呜呜呜~"+"\n"
             }
         }
     }
