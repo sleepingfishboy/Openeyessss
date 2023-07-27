@@ -24,7 +24,6 @@ import kotlin.concurrent.thread
 class RecommendFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    private lateinit var liveData: MutableLiveData<MutableList<RecommendResponse.Item>>
     private lateinit var progressBar: ProgressBar
     private val rvAdapter=RvAdapter()
     private val viewModel by lazy { ViewModelProvider(this).get(RecommendViewModel::class.java) }
@@ -71,13 +70,15 @@ class RecommendFragment : Fragment() {
                 }
             }
         }
+        swipeRefreshLayout.setOnRefreshListener {
+            refresh(rvAdapter)
+        }
     }
 
     private fun refresh(rvAdapter: RvAdapter) {
         thread {
             Thread.sleep(1000)
             run {
-                rvAdapter.notifyDataSetChanged()
                 swipeRefreshLayout.isRefreshing = false
             }
         }

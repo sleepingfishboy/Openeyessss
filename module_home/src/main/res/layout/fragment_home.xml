@@ -17,7 +17,8 @@ android:background="@drawable/background_user"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorFullWidth="false"
         android:background= "@android:color/transparent"
-        app:tabTextColor="@color/black" />
+        app:tabTextColor="@color/white"
+        app:tabIndicatorColor="@color/white"/>
 
 
     <androidx.viewpager2.widget.ViewPager2
