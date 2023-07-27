@@ -48,9 +48,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //在这里引入所有的模块
     implementation(project(":lib_api"))
-    implementation(project(":lib_common"))
-    implementation(project(":lib_network"))
-    implementation(project(":lib_video"))
     implementation(project(":module_home"))
     implementation(project(":module_square"))
     implementation(project(":module_discovery"))
