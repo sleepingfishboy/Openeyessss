@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:collapsedTitleTextColor="@color/white"
-            app:expandedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="#F7C8D5"
             app:contentScrim="#F7C8D5"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -27,7 +27,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"/>
+                app:layout_collapseMode="parallax"
+                android:background="#F7C8D5"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tag_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="center"
+                    android:textSize="50dp"
+                    android:text="Test"
+                    android:textColor="@color/white"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
