@@ -31,7 +31,7 @@ class WeekFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_week, container, false)
 
-        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
+        swipeRefreshLayout = view.findViewById(R.id.srl_week)
         recyclerView = view.findViewById(R.id.rv_week)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
