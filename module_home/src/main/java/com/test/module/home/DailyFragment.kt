@@ -1,10 +1,16 @@
 package com.test.module.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +25,22 @@ class DailyFragment : Fragment() {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var dailyAdapter: DailyAdapter
     private lateinit var liveData: MutableLiveData<MutableList<Item>>
+    private val networkChangeReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            // 处理网络变化情况
+            val connectivityManager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val networkInfo = connectivityManager.activeNetworkInfo
+            val isConnected = networkInfo != null && networkInfo.isConnected
+
+            if (isConnected) {
+                // 网络已连接，执行相应操作
+                viewModel.setDisposable()
+            } else {
+                // 网络已断开，显示错误信息
+                Toast.makeText(context,"网络连接已断开",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     private val viewModel by lazy { ViewModelProvider(this)[DailyViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +74,17 @@ class DailyFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        requireActivity().registerReceiver(networkChangeReceiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        requireActivity().unregisterReceiver(networkChangeReceiver)
     }
 
     private fun refresh(dailyAdapter: DailyAdapter) {

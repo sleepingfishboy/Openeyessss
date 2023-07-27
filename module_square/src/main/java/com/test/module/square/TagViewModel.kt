@@ -1,5 +1,6 @@
 package com.test.module.square
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,39 +23,57 @@ class TagViewModel:ViewModel() {
             0->disposable = ApiManager.getAd()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setAdData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
             1->disposable = ApiManager.getExercise()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setExeData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
             2->disposable = ApiManager.getMusic()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setMusicData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
             3->disposable = ApiManager.getDrama()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setDramaData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
             4->disposable = ApiManager.getFunny()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setFunnyData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
             5->disposable = ApiManager.getFood()
                 ?.subscribeOn(Schedulers.io())
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe { data ->
+                ?.subscribe ({ data ->
                     setFoodData(data.itemList)
-                }
+                },{ throwable ->
+                    // 错误处理逻辑
+                    Log.e("TAG", "发生异常：$throwable")
+                })
         }
     }
 
