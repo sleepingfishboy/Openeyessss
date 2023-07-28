@@ -20,15 +20,17 @@
 
 + 推荐界面
 
-<img src="C:\Users\联想\Desktop\图片\QQ图片20230728211239.gif" alt="QQ图片20230728211239" style="zoom:50%;" />
+  ![QQ图片20230728211239](https://github.com/sleepingfishboy/Openeyessss/assets/119737732/e2b72253-eed4-46ab-9515-69c8c8c0ad86)
 
 + 日报界面
 
-  <img src="C:\Users\联想\Desktop\图片\QQ图片20230728211310.gif" alt="QQ图片20230728211310" style="zoom:50%;" />
+  ![QQ图片20230728211310](https://github.com/sleepingfishboy/Openeyessss/assets/119737732/80a85399-d006-41d5-a667-6ceba7da4fd0)
+
 
 + 广场界面
 
-  <img src="C:\Users\联想\Desktop\图片\QQ图片20230728211322.gif" alt="QQ图片20230728211322" style="zoom:50%;" />
+  ![QQ图片20230728211322](https://github.com/sleepingfishboy/Openeyessss/assets/119737732/af48f4ec-dc56-411c-b927-4d6b7801013b)
+
 
 ### 使用到的比较重要的技术及知识点
 
