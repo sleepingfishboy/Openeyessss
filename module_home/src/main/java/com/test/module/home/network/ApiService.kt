@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 
 interface ApiService {
-    @GET("api/v5/index/tab/feed?num=50")
+    @GET("api/v5/index/tab/feed?num=100")
     fun getDaily():Observable<Daily>
 
     @GET("api/v5/index/tab/allRec")
