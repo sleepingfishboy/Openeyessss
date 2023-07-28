@@ -32,6 +32,7 @@ class TotalFragment : Fragment() {
         swipeRefreshLayout = view.findViewById(R.id.srl_total)
         recyclerView = view.findViewById(R.id.rv_total)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        swipeRefreshLayout.setColorSchemeResources(com.test.module.home.R.color.pink)
 
         adapter = TotalAdapter()
         recyclerView.adapter = adapter

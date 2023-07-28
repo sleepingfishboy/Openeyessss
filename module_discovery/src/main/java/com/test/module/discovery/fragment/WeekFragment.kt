@@ -34,6 +34,7 @@ class WeekFragment : Fragment() {
         swipeRefreshLayout = view.findViewById(R.id.srl_week)
         recyclerView = view.findViewById(R.id.rv_week)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        swipeRefreshLayout.setColorSchemeResources(com.test.module.home.R.color.pink)
 
         adapter = WeekAdapter()
         recyclerView.adapter = adapter
