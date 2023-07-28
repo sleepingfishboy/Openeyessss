@@ -37,7 +37,11 @@ class MonthFragment : Fragment() {
 
         adapter = MonthAdapter()
         recyclerView.adapter = adapter
+        swipeRefreshLayout.setColorSchemeResources(com.test.module.home.R.color.pink)
+
         swipeRefreshLayout.setOnRefreshListener {
+
+
             loadData() // 在刷新时重新加载数据
         }
         loadData()

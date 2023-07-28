@@ -34,7 +34,7 @@ class DailyFragment : Fragment() {
 
             if (isConnected) {
                 // 网络已连接，执行相应操作
-                viewModel.setDisposable()
+                viewModel.setDisposable(swipeRefreshLayout)
             } else {
                 // 网络已断开，显示错误信息
                 Toast.makeText(context,"网络连接已断开",Toast.LENGTH_SHORT).show()
@@ -45,18 +45,15 @@ class DailyFragment : Fragment() {
     private val viewModel by lazy { ViewModelProvider(this)[DailyViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel.setDisposable()
         liveData = viewModel.getData() as MutableLiveData<MutableList<Item>>
         liveData.observe(this, Observer { dailyList ->
             dailyAdapter = DailyAdapter(dailyList)
             recyclerView.adapter = dailyAdapter
-            swipeRefreshLayout.setColorSchemeResources(R.color.black)
+
             swipeRefreshLayout.setOnRefreshListener {
-                refresh(DailyAdapter(dailyList))
+                viewModel.setDisposable(swipeRefreshLayout)
             }
         })
-
     }
 
     override fun onCreateView(
@@ -71,9 +68,8 @@ class DailyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh_daily)
         recyclerView = view.findViewById(R.id.rv_daily)
-        val layoutManager: RecyclerView.LayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink)
     }
 
     override fun onResume() {

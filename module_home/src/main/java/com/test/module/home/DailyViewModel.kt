@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.test.module.home.network.ApiManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -13,6 +14,7 @@ class DailyViewModel : ViewModel() {
     private var disposable: Disposable? = null
     private var dataList: MutableLiveData<MutableList<Item>>? = null
 
+
     fun getData(): LiveData<MutableList<Item>> {
         if (dataList == null) {
             dataList = MutableLiveData()
@@ -20,10 +22,12 @@ class DailyViewModel : ViewModel() {
         return dataList!!
     }
 
-    fun setDisposable() {
+    fun setDisposable(swipeRefreshLayout: SwipeRefreshLayout) {
         disposable = ApiManager.getDaily()
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
+            ?.doOnSubscribe{swipeRefreshLayout.isRefreshing=true}
+            ?.doFinally {swipeRefreshLayout.isRefreshing=false}
             ?.subscribe ({ daily ->
                 setDailyData(daily.itemList)
             },
