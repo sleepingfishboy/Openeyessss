@@ -1,6 +1,5 @@
 # Openeyessss
  暑假考核
-# 开眼视频
 
 ## APP简要介绍
 
@@ -39,6 +38,8 @@
 首页是TabLayout、ViewPager2、RecyclerView的结合使用。在推荐界面使用了Paging3（~~虽说用处不大~~）。界面中用来显示封面和标题的都是一个CardView。
 
 广场的分类是用Carousel组件实现的(看着很花哨)，点进去一个分类，页面是一个折叠式标题栏加上RecyclerView。
+
+网络请求用的是Retrofit。
 
 模块间通信用的是ARouter(只是简单使用)。
 
