@@ -95,6 +95,7 @@ class TagActivity : AppCompatActivity() {
         unregisterReceiver(networkChangeReceiver)
     }
 
+    //根据点击的分类显示相应的界面
     private fun init(id:Int){
         when (id) {
             0 -> {

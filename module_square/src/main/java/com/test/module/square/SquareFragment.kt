@@ -18,7 +18,6 @@ import kotlin.concurrent.thread
 
 
 class SquareFragment : Fragment() {
-    private val viewModel by lazy { ViewModelProvider(this)[SquareViewModel::class.java] }
     private lateinit var list: List<String>
     private lateinit var carouselRecyclerView: RecyclerView
 

@@ -24,6 +24,7 @@ object ApiManager {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    //设置PagingData流
     fun getPagingData(): Flow<PagingData<AllRec.Item>>{
         return Pager(
             config = PagingConfig(PAGE_SIZE),
