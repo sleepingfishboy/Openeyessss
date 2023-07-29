@@ -3,6 +3,7 @@ import androidx.paging.PagingState
 import com.test.module.home.AllRec
 import com.test.module.home.network.ApiService
 
+//定义数据源
 class RecPagingSource(private val apiService: ApiService):PagingSource<Int,AllRec.Item>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AllRec.Item> {
         return try {
