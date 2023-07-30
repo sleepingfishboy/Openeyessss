@@ -1,4 +1,4 @@
-package com.test.module.player
+package com.test.module.player.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
+import com.test.module.player.R
+import com.test.module.player.data.RelevantBean
 
 /**
  *作者：sleepingfishboy
@@ -17,7 +19,7 @@ import com.bumptech.glide.Glide
  */
 class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
 
-    private val itemList: MutableList<Relevant.Item> = mutableListOf()
+    private val itemList: MutableList<RelevantBean.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
@@ -66,7 +68,7 @@ class RelevantAdapter : RecyclerView.Adapter<RelevantAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setRelevantData(relevantItems: List<Relevant.Item>) {
+    fun setRelevantData(relevantItems: List<RelevantBean.Item>) {
         itemList.clear()
         itemList.addAll(relevantItems)
         itemList.clear()

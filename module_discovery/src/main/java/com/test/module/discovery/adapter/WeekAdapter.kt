@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.test.module.discovery.R
-import com.test.module.discovery.network.Weekly
+import com.test.module.discovery.data.WeeklyBean
 
 /**
  *作者：sleepingfishboy
@@ -19,7 +19,7 @@ import com.test.module.discovery.network.Weekly
  */
 class WeekAdapter : RecyclerView.Adapter<WeekAdapter.ViewHolder>() {
 
-    private val itemList: MutableList<Weekly.Item> = mutableListOf()
+    private val itemList: MutableList<WeeklyBean.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
@@ -65,7 +65,7 @@ class WeekAdapter : RecyclerView.Adapter<WeekAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setWeeklyData(weeklyItems: List<Weekly.Item>) {
+    fun setWeeklyData(weeklyItems: List<WeeklyBean.Item>) {
         itemList.clear()
         itemList.addAll(weeklyItems)
         notifyDataSetChanged()

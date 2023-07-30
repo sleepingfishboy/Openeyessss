@@ -1,18 +1,18 @@
-package com.test.module.player
+package com.test.module.discovery.data
 
 /**
  *作者：sleepingfishboy
- *时间：2023/7/22
+ *时间：2023/7/16
 
  */
-class Relevant(
+data class MonthlyBean(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,
     val nextPageUrl: Any,
     val total: Int
 ) {
-    class Item(
+    data class Item(
         val adIndex: Int,
         val `data`: Data,
         val id: Int,
@@ -20,8 +20,7 @@ class Relevant(
         val trackingData: Any,
         val type: String
     ) {
-        class Data(
-            val actionUrl: String,
+        data class Data(
             val ad: Boolean,
             val adTrack: List<Any>,
             val author: Author,
@@ -38,7 +37,6 @@ class Relevant(
             val descriptionPgc: String,
             val duration: Int,
             val favoriteAdTrack: Any,
-            val follow: Any,
             val id: Int,
             val idx: Int,
             val ifLimitVideo: Boolean,
@@ -62,10 +60,8 @@ class Relevant(
             val shareAdTrack: Any,
             val slogan: String,
             val src: Any,
-            val subTitle: Any,
             val subtitles: List<Any>,
             val tags: List<Tag>,
-            val text: String,
             val thumbPlayUrl: String,
             val title: String,
             val titlePgc: String,
@@ -75,7 +71,7 @@ class Relevant(
             val webAdTrack: Any,
             val webUrl: WebUrl
         ) {
-            class Author(
+            data class Author(
                 val adTrack: Any,
                 val approvedNotReadyVideoCount: Int,
                 val description: String,
@@ -91,27 +87,27 @@ class Relevant(
                 val shield: Shield,
                 val videoNum: Int
             ) {
-                class Follow(
+                data class Follow(
                     val followed: Boolean,
                     val itemId: Int,
                     val itemType: String
                 )
 
-                class Shield(
+                data class Shield(
                     val itemId: Int,
                     val itemType: String,
                     val shielded: Boolean
                 )
             }
 
-            class Consumption(
+            data class Consumption(
                 val collectionCount: Int,
                 val realCollectionCount: Int,
                 val replyCount: Int,
                 val shareCount: Int
             )
 
-            class Cover(
+            data class Cover(
                 val blurred: String,
                 val detail: String,
                 val feed: String,
@@ -119,7 +115,7 @@ class Relevant(
                 val sharing: Any
             )
 
-            class PlayInfo(
+            data class PlayInfo(
                 val height: Int,
                 val name: String,
                 val type: String,
@@ -127,20 +123,20 @@ class Relevant(
                 val urlList: List<Url>,
                 val width: Int
             ) {
-                class Url(
+                data class Url(
                     val name: String,
                     val size: Int,
                     val url: String
                 )
             }
 
-            class Provider(
+            data class Provider(
                 val alias: String,
                 val icon: String,
                 val name: String
             )
 
-            class Tag(
+            data class Tag(
                 val actionUrl: String,
                 val adTrack: Any,
                 val bgPicture: String,
@@ -157,13 +153,13 @@ class Relevant(
                 val tagRecType: String
             )
 
-            class VideoPosterBean(
+            data class VideoPosterBean(
                 val fileSizeStr: String,
                 val scale: Double,
                 val url: String
             )
 
-            class WebUrl(
+            data class WebUrl(
                 val forWeibo: String,
                 val raw: String
             )

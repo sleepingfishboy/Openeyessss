@@ -1,18 +1,20 @@
-package com.test.module.discovery.network
+package com.test.module.discovery.data
 
 /**
  *作者：sleepingfishboy
- *时间：2023/7/19
+ *时间：2023/7/16
 
  */
-class Total(
+data class WeeklyBean(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,
     val nextPageUrl: Any,
     val total: Int
 ) {
-    class Item(
+
+
+    data class Item(
         val adIndex: Int,
         val `data`: Data,
         val id: Int,
@@ -20,10 +22,10 @@ class Total(
         val trackingData: Any,
         val type: String
     ) {
-        class Data(
+        data class Data(
             val ad: Boolean,
             val adTrack: List<Any>,
-            val author: Author,
+            val author: Author,//作者
             val brandWebsiteInfo: Any,
             val campaign: Any,
             val category: String,
@@ -33,15 +35,15 @@ class Total(
             val dataType: String,
             val date: Long,
             val description: String,
-            val descriptionEditor: String,
+            val descriptionEditor: String,//
             val descriptionPgc: String,
             val duration: Int,
             val favoriteAdTrack: Any,
             val id: Int,
             val idx: Int,
             val ifLimitVideo: Boolean,
-            val label: Label,
-            val labelList: List<Label>,
+            val label: Any,
+            val labelList: List<Any>,
             val lastViewTime: Any,
             val library: String,
             val playInfo: List<PlayInfo>,
@@ -58,7 +60,7 @@ class Total(
             val resourceType: String,
             val searchWeight: Int,
             val shareAdTrack: Any,
-            val slogan: String,
+            val slogan: Any,
             val src: Any,
             val subtitles: List<Any>,
             val tags: List<Tag>,
@@ -71,7 +73,7 @@ class Total(
             val webAdTrack: Any,
             val webUrl: WebUrl
         ) {
-            class Author(
+            data class Author(
                 val adTrack: Any,
                 val approvedNotReadyVideoCount: Int,
                 val description: String,
@@ -87,44 +89,35 @@ class Total(
                 val shield: Shield,
                 val videoNum: Int
             ) {
-                class Follow(
+                data class Follow(
                     val followed: Boolean,
                     val itemId: Int,
                     val itemType: String
                 )
 
-                class Shield(
+                data class Shield(
                     val itemId: Int,
                     val itemType: String,
                     val shielded: Boolean
                 )
             }
 
-            class Consumption(
+            data class Consumption(
                 val collectionCount: Int,
                 val realCollectionCount: Int,
                 val replyCount: Int,
                 val shareCount: Int
             )
 
-            class Cover(
+            data class Cover(
                 val blurred: String,
                 val detail: String,
-                val feed: String,
-                val homepage: Any,
+                val feed: String,//
+                val homepage: String,
                 val sharing: Any
             )
 
-            class Label(
-                val card: String,
-                val detail: String,
-                val text1: String,
-                val actionUrl: Any,
-                val text: String
-            )
-
-
-            class PlayInfo(
+            data class PlayInfo(
                 val height: Int,
                 val name: String,
                 val type: String,
@@ -132,20 +125,20 @@ class Total(
                 val urlList: List<Url>,
                 val width: Int
             ) {
-                class Url(
+                data class Url(
                     val name: String,
                     val size: Int,
                     val url: String
                 )
             }
 
-            class Provider(
+            data class Provider(
                 val alias: String,
                 val icon: String,
                 val name: String
             )
 
-            class Tag(
+            data class Tag(
                 val actionUrl: String,
                 val adTrack: Any,
                 val bgPicture: String,
@@ -162,13 +155,13 @@ class Total(
                 val tagRecType: String
             )
 
-            class VideoPosterBean(
+            data class VideoPosterBean(
                 val fileSizeStr: String,
                 val scale: Double,
                 val url: String
             )
 
-            class WebUrl(
+            data class WebUrl(
                 val forWeibo: String,
                 val raw: String
             )

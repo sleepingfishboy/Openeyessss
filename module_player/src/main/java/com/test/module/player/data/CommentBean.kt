@@ -1,4 +1,4 @@
-package com.test.module.player
+package com.test.module.player.data
 
 class CommentBean(
     val adExist: Boolean,
@@ -12,7 +12,7 @@ class CommentBean(
         val `data`: Data,
         val id: Int,
 
-    ) {
+        ) {
         class Data(
             val actionUrl: Any,
             val adTrack: Any,

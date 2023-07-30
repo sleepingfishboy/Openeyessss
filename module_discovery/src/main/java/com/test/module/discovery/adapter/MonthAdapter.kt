@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.test.module.discovery.R
-import com.test.module.discovery.network.Monthly
+import com.test.module.discovery.data.MonthlyBean
 
 /**
  *作者：sleepingfishboy
@@ -19,11 +19,12 @@ import com.test.module.discovery.network.Monthly
  */
 class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
 
-    private val itemList: MutableList<Monthly.Item> = mutableListOf()
+    private val itemList: MutableList<MonthlyBean.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
         val titleText: TextView = itemView.findViewById(R.id.titleText)
+
         init {
             itemView.setOnClickListener {
                 // 处理item点击事件
@@ -44,7 +45,8 @@ class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
         return ViewHolder(view)
     }
 
@@ -63,7 +65,7 @@ class MonthAdapter : RecyclerView.Adapter<MonthAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMonthlyData(monthlyItems: List<Monthly.Item>) {
+    fun setMonthlyData(monthlyItems: List<MonthlyBean.Item>) {
         itemList.clear()
         itemList.addAll(monthlyItems)
         notifyDataSetChanged()

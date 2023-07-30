@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.test.module.player.PlayerMainActivity"
+            android:name="com.test.module.player.activity.PlayerMainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:exported="true">
