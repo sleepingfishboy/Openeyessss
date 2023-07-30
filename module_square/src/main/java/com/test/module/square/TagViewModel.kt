@@ -18,6 +18,7 @@ class TagViewModel:ViewModel() {
     private var funnyDataList:MutableLiveData<MutableList<Funny.Item>>?=null
     private var foodDataList:MutableLiveData<MutableList<Food.Item>>?=null
 
+    //根据传入的id请求对应的数据
     fun setDisposable(id:Int){
         when(id){
             0->disposable = ApiManager.getAd()

@@ -33,6 +33,7 @@ class SquareAdapter(private val dataList: List<String>): RecyclerView.Adapter<Sq
             LayoutInflater.from(parent.context).inflate(R.layout.item_carousel,parent,false)
         val viewHolder=ViewHolder(itemView)
         viewHolder.imageView.setOnClickListener{
+            //跳转到点击对应的分类页面中
             val position = viewHolder.adapterPosition
             val intent=Intent(itemView.context,TagActivity::class.java)
             intent.putExtra("position",position)
