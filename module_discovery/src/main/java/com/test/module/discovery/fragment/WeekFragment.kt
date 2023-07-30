@@ -55,6 +55,7 @@ class WeekFragment : Fragment() {
     private fun loadData() {
         weekViewModel.loadWeeklyData()
     }
+
     private fun observeViewModel() {
         // 观察monthlyData的变化，更新列表数据
         weekViewModel.getWeeklyData().observe(viewLifecycleOwner) { weeklyList ->

@@ -1,5 +1,7 @@
-package com.test.module.player
+package com.test.module.player.network
 
+import com.test.module.player.CommentBean
+import com.test.module.player.Relevant
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

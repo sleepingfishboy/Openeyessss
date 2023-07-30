@@ -1,17 +1,19 @@
-package com.test.module.discovery.network
+package com.test.module.discovery.data
 
 /**
  *作者：sleepingfishboy
  *时间：2023/7/16
 
  */
-data class Monthly(
+data class WeeklyBean(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,
     val nextPageUrl: Any,
     val total: Int
 ) {
+
+
     data class Item(
         val adIndex: Int,
         val `data`: Data,
@@ -23,7 +25,7 @@ data class Monthly(
         data class Data(
             val ad: Boolean,
             val adTrack: List<Any>,
-            val author: Author,
+            val author: Author,//作者
             val brandWebsiteInfo: Any,
             val campaign: Any,
             val category: String,
@@ -33,7 +35,7 @@ data class Monthly(
             val dataType: String,
             val date: Long,
             val description: String,
-            val descriptionEditor: String,
+            val descriptionEditor: String,//
             val descriptionPgc: String,
             val duration: Int,
             val favoriteAdTrack: Any,
@@ -58,11 +60,11 @@ data class Monthly(
             val resourceType: String,
             val searchWeight: Int,
             val shareAdTrack: Any,
-            val slogan: String,
+            val slogan: Any,
             val src: Any,
             val subtitles: List<Any>,
             val tags: List<Tag>,
-            val thumbPlayUrl: String,
+            val thumbPlayUrl: Any,
             val title: String,
             val titlePgc: String,
             val type: String,
@@ -110,7 +112,7 @@ data class Monthly(
             data class Cover(
                 val blurred: String,
                 val detail: String,
-                val feed: String,
+                val feed: String,//
                 val homepage: String,
                 val sharing: Any
             )

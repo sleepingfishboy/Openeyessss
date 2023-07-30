@@ -1,16 +1,12 @@
 package com.test.module.player
 
-import android.Manifest
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.os.Vibrator
 import android.util.Log
 import android.view.View
@@ -18,19 +14,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.test.module.player.adapter.RelevantAdapter
+import com.test.module.player.network.ApiManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.VideoView
-import java.io.File
 
 
 @Route(path = "/player/activity", group = "player")
@@ -67,7 +62,7 @@ class PlayerMainActivity : AppCompatActivity() {
 
         ARouter.getInstance().inject(this)
 
-        Log.d("ggg","(:)-->> $id")
+        Log.d("ggg", "(:)-->> $id")
 
         val mIvLike: ImageView? = findViewById(R.id.iv_like)
         val mIvComment: ImageView? = findViewById(R.id.iv_comment)
@@ -80,24 +75,16 @@ class PlayerMainActivity : AppCompatActivity() {
 
         mIvDownload?.setOnClickListener {
             mVibrator.vibrate(50)
-            Log.d("ggg","(:)-->> 下载")
+            Log.d("ggg", "(:)-->> 下载")
             Toast.makeText(this, "开始下载", Toast.LENGTH_SHORT).show()
             val mDownloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-
-
             val resource = Uri.parse(url)
-
             val request = DownloadManager.Request(resource)
 
-            request.setDestinationInExternalPublicDir("Download","$title.mp4")
-
-
+            request.setDestinationInExternalPublicDir("Download", "$title.mp4")
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             request.setVisibleInDownloadsUi(true)
-
-
-
             mDownloadManager.enqueue(request)
 
         }
@@ -161,8 +148,7 @@ class PlayerMainActivity : AppCompatActivity() {
         videoView.setVideoController(controller) //设置控制器
 
 
-
-        videoView.start() 
+        videoView.start()
 
     }
 

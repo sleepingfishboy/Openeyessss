@@ -1,11 +1,11 @@
-package com.test.module.discovery.network
+package com.test.module.discovery.data
 
 /**
  *作者：sleepingfishboy
  *时间：2023/7/19
 
  */
-class Total(
+class TotalBean(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,

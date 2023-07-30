@@ -22,6 +22,7 @@ class TotalFragment : Fragment() {
     private val totalViewModel: DiscoveryViewModel by lazy {
         ViewModelProvider(this)[DiscoveryViewModel::class.java]
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +51,7 @@ class TotalFragment : Fragment() {
     private fun loadData() {
         totalViewModel.loadTotalData()
     }
+
     private fun observeViewModel() {
         // 观察monthlyData的变化，更新列表数据
         totalViewModel.getTotalData().observe(viewLifecycleOwner) { totalList ->

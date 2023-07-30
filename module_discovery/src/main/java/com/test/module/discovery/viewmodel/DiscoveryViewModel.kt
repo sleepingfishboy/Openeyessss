@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.module.discovery.network.ApiManager
-import com.test.module.discovery.network.Monthly
-import com.test.module.discovery.network.Total
-import com.test.module.discovery.network.Weekly
+import com.test.module.discovery.data.MonthlyBean
+import com.test.module.discovery.data.TotalBean
+import com.test.module.discovery.data.WeeklyBean
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -17,19 +17,19 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
  */
 class DiscoveryViewModel : ViewModel() {
-    private val monthlyData: MutableLiveData<List<Monthly.Item>> = MutableLiveData()
-    private val weeklyData: MutableLiveData<List<Weekly.Item>> = MutableLiveData()
-    private val totalData: MutableLiveData<List<Total.Item>> = MutableLiveData()
+    private val monthlyData: MutableLiveData<List<MonthlyBean.Item>> = MutableLiveData()
+    private val weeklyData: MutableLiveData<List<WeeklyBean.Item>> = MutableLiveData()
+    private val totalData: MutableLiveData<List<TotalBean.Item>> = MutableLiveData()
     private var disposable: Disposable? = null
 
     // 定义需要用到的LiveData
-    fun getMonthlyData(): MutableLiveData<List<Monthly.Item>> {
+    fun getMonthlyData(): MutableLiveData<List<MonthlyBean.Item>> {
         return monthlyData
     }
-    fun getWeeklyData(): MutableLiveData<List<Weekly.Item>> {
+    fun getWeeklyData(): MutableLiveData<List<WeeklyBean.Item>> {
         return weeklyData
     }
-    fun getTotalData(): MutableLiveData<List<Total.Item>> {
+    fun getTotalData(): MutableLiveData<List<TotalBean.Item>> {
         return totalData
     }
 

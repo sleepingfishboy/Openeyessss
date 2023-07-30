@@ -1,4 +1,4 @@
-package com.test.module.player
+package com.test.module.player.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
+import com.test.module.player.R
+import com.test.module.player.Relevant
 
 /**
  *作者：sleepingfishboy
