@@ -1,11 +1,11 @@
-package com.test.module.player
+package com.test.module.player.data
 
 /**
  *作者：sleepingfishboy
  *时间：2023/7/22
 
  */
-class Relevant(
+class RelevantBean(
     val adExist: Boolean,
     val count: Int,
     val itemList: List<Item>,

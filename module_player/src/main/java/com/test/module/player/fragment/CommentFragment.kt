@@ -1,4 +1,4 @@
-package com.test.module.player
+package com.test.module.player.fragment
 
 import android.os.Bundle
 
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.test.module.player.R
 import com.test.module.player.adapter.CommentAdapter
 import com.test.module.player.network.ApiManager
 

@@ -1,7 +1,8 @@
-package com.test.module.discovery
+package com.test.module.discovery.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.test.module.discovery.R
 
 
 class DiscoveryMainActivity : AppCompatActivity() {

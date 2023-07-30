@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.test.module.player.CommentBean
+import com.test.module.player.data.CommentBean
 import com.test.module.player.R
 
 /**
