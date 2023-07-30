@@ -67,9 +67,11 @@ class RecommendFragment : Fragment() {
                     val state=it.refresh as LoadState.Error
                     progressBar.visibility=View.INVISIBLE
                     Log.d("recommend", "error = ${state.error.message}: ")
+                    Toast.makeText(context,"网络连接已断开",Toast.LENGTH_SHORT).show()
                 }
             }
         }
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink)
         swipeRefreshLayout.setOnRefreshListener {
             refresh(rvAdapter)
         }

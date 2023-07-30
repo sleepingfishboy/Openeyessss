@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.test.module.discovery.R
-import com.test.module.discovery.network.Total
+import com.test.module.discovery.data.TotalBean
 
 
 /**
@@ -19,11 +19,12 @@ import com.test.module.discovery.network.Total
 
  */
 class TotalAdapter : RecyclerView.Adapter<TotalAdapter.ViewHolder>() {
-    private val itemList: MutableList<Total.Item> = mutableListOf()
+    private val itemList: MutableList<TotalBean.Item> = mutableListOf()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val backgroundImage: ImageView = itemView.findViewById(R.id.backgroundImage)
         val titleText: TextView = itemView.findViewById(R.id.titleText)
+
         init {
             itemView.setOnClickListener {
                 // 处理item点击事件
@@ -43,12 +44,13 @@ class TotalAdapter : RecyclerView.Adapter<TotalAdapter.ViewHolder>() {
         }
     }
 
-      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
         return ViewHolder(view)
     }
 
-      override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
 
         Glide.with(holder.itemView)
@@ -58,12 +60,12 @@ class TotalAdapter : RecyclerView.Adapter<TotalAdapter.ViewHolder>() {
         holder.titleText.text = item.data.title
     }
 
-      override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
         return itemList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setTotalData(totalItems: List<Total.Item>) {
+    fun setTotalData(totalItems: List<TotalBean.Item>) {
         itemList.clear()
         itemList.addAll(totalItems)
         notifyDataSetChanged()

@@ -1,28 +1,27 @@
 package com.test.module.discovery.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.test.module.discovery.R
 import com.test.module.discovery.adapter.TotalAdapter
-import com.test.module.discovery.network.ApiManager
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.test.module.discovery.viewmodel.DiscoveryViewModel
 
 
 class TotalFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TotalAdapter
-    private var disposable: Disposable? = null
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
+    private val totalViewModel: DiscoveryViewModel by lazy {
+        ViewModelProvider(this)[DiscoveryViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +31,7 @@ class TotalFragment : Fragment() {
         swipeRefreshLayout = view.findViewById(R.id.srl_total)
         recyclerView = view.findViewById(R.id.rv_total)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        swipeRefreshLayout.setColorSchemeResources(com.test.module.home.R.color.pink)
 
         adapter = TotalAdapter()
         recyclerView.adapter = adapter
@@ -39,30 +39,24 @@ class TotalFragment : Fragment() {
             loadData() // 在刷新时重新加载数据
         }
         loadData()
-
-
+        observeViewModel() // 监听数据变化
         return view
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        disposable?.dispose()
+        totalViewModel.cancelDataRequest() // 取消数据加载请求
     }
 
     private fun loadData() {
-        disposable = ApiManager.getTotal()
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.doOnSubscribe { swipeRefreshLayout.isRefreshing = true } // 显示刷新状态
-            ?.doFinally { swipeRefreshLayout.isRefreshing = false } // 隐藏刷新状态
-            ?.subscribe({ total ->
-                Log.d("ggg", total.itemList.toString())
-                adapter.setTotalData(total.itemList)
-            }, { error ->
-                // 处理订阅过程中可能发生的错误
-                error.printStackTrace()
-                Toast.makeText(context, "看一下有没有联网哦~", Toast.LENGTH_SHORT).show()
-                // 显示错误提示或执行其他适当的错误处理操作
-            })
+        totalViewModel.loadTotalData()
+    }
+
+    private fun observeViewModel() {
+        // 观察monthlyData的变化，更新列表数据
+        totalViewModel.getTotalData().observe(viewLifecycleOwner) { totalList ->
+            adapter.setTotalData(totalList)
+            swipeRefreshLayout.isRefreshing = false // 停止刷新动画
+        }
     }
 }
