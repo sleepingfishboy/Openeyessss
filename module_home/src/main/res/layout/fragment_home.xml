@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
 android:background="@drawable/background_user"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".fragment.HomeFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

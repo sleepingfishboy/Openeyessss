@@ -32,7 +32,8 @@ class CommentFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+
         val view = inflater.inflate(R.layout.fragment_comment, container, false)
         val id = arguments?.getString(ARG_ID)
         recyclerView = view.findViewById(R.id.rv_comment)

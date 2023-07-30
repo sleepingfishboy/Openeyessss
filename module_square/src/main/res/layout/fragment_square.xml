@@ -5,7 +5,7 @@
     android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:background="@drawable/background_user"
-    tools:context=".SquareFragment">
+    tools:context=".fragment.SquareFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
