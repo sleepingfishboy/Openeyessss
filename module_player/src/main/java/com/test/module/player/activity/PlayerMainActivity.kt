@@ -37,7 +37,8 @@ class PlayerMainActivity : AppCompatActivity() {
     private lateinit var playerMainViewModel: PlayerMainViewModel
 
 
-    @Autowired
+    @Autowired// 使用依赖注入 AutoWired 标注，用于自动将指定的值注入到属性中
+
     lateinit var url: String
 
     @Autowired
@@ -54,6 +55,8 @@ class PlayerMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_main)
+
+        //沉浸式状态栏
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -65,32 +68,41 @@ class PlayerMainActivity : AppCompatActivity() {
 
         Log.d("ggg", "(:)-->> $id")
 
+        //声明并初始化变量
         val mIvLike: ImageView? = findViewById(R.id.iv_like)
         val mIvComment: ImageView? = findViewById(R.id.iv_comment)
         val mIvTransmit: ImageView? = findViewById(R.id.iv_transmit)
         val mIvDownload: ImageView? = findViewById(R.id.iv_download)
-
         val mVibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val des: TextView = findViewById(R.id.tv_cv_intro)
+        playerMainViewModel = ViewModelProvider(this).get(PlayerMainViewModel::class.java)
 
+        //跳转到这个界面时震动
         mVibrator.vibrate(1)
 
+        //标题和简介
+        des.text = title + "\n" + "\n" + description
+        //下载
         mIvDownload?.setOnClickListener {
+            //点击按钮震动
             mVibrator.vibrate(50)
             downLoad()
         }
 
+        //分享
         mIvTransmit?.setOnClickListener {
             mVibrator.vibrate(50)
             allShare(this, webUrl)
         }
-        mIvComment?.setOnClickListener {
 
+        //显示一个评论对话框
+        mIvComment?.setOnClickListener {
             mVibrator.vibrate(50)
             val fragment = CommentFragment.newInstance(id)
             fragment.show(supportFragmentManager, "comment_dialog")
         }
-
-        var isClicked = false // 标志位，默认为未点击状态
+        // 标志位，默认为未点击状态
+        var isClicked = false
 
         mIvLike?.setOnClickListener {
             mVibrator.vibrate(50)
@@ -104,16 +116,14 @@ class PlayerMainActivity : AppCompatActivity() {
                 true
             }
 
-
         }
-        val des: TextView = findViewById(R.id.tv_cv_intro)
-        des.text = title + "\n" + "\n" + description
 
-        playerMainViewModel = ViewModelProvider(this).get(PlayerMainViewModel::class.java)
-
+        //id不为空时获取推荐列表
         if (id != null) {
             recyclerView = findViewById(R.id.rv_relevant)
             recyclerView.layoutManager = LinearLayoutManager(this)
+
+            //在滚动时不会与其父级滚动冲突
             recyclerView.isNestedScrollingEnabled = false
 
             adapter = RelevantAdapter()
@@ -124,18 +134,16 @@ class PlayerMainActivity : AppCompatActivity() {
             }
 
             // 加载相关视频数据
-
             playerMainViewModel.loadRelevantVideos(id)
         }
 
+        //视频播放
         videoView = findViewById(R.id.player)
         videoView.setUrl(url) //设置视频地址
 
         val controller = StandardVideoController(this)
         controller.addDefaultControlComponent(title, false)
         videoView.setVideoController(controller) //设置控制器
-
-
         videoView.start()
 
     }
@@ -169,6 +177,7 @@ class PlayerMainActivity : AppCompatActivity() {
         mDownloadManager.enqueue(request)
     }
 
+    //视频播放相关
     override fun onPause() {
         super.onPause()
         videoView.pause()
