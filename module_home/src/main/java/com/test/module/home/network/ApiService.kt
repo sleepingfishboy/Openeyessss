@@ -1,8 +1,8 @@
 package com.test.module.home.network
 
 
-import com.test.module.home.AllRec
-import com.test.module.home.Daily
+import com.test.module.home.data.AllRec
+import com.test.module.home.data.Daily
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +13,5 @@ interface ApiService {
     fun getDaily():Observable<Daily>
 
     @GET("api/v5/index/tab/allRec")
-    suspend fun searchRec(@Query("page")page:Int,@Query("per_page")perPage:Int):AllRec
+    suspend fun searchRec(@Query("page")page:Int,@Query("per_page")perPage:Int): AllRec
 }

@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.test.module.home.HomeFragment"
+        android:name="com.test.module.home.fragment.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/squareFragment"
-        android:name="com.test.module.square.SquareFragment"
+        android:name="com.test.module.square.fragment.SquareFragment"
         android:label="SquareFragment" />
     <fragment
         android:id="@+id/discoveryFragment"

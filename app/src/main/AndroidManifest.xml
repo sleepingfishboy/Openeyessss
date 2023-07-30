@@ -34,7 +34,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.test.module.square.TagActivity"
+            android:name="com.test.module.square.activity.TagActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

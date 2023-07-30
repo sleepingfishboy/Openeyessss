@@ -1,7 +1,13 @@
 package network
 
 
-import com.test.module.square.*
+import com.test.module.square.data.Advertisement
+import com.test.module.square.data.Community
+import com.test.module.square.data.Drama
+import com.test.module.square.data.Exercise
+import com.test.module.square.data.Food
+import com.test.module.square.data.Funny
+import com.test.module.square.data.Music
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
