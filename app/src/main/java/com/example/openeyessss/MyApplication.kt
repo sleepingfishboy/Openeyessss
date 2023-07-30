@@ -7,6 +7,7 @@ class MyApplication:Application() {
     override fun onCreate() {
         super.onCreate()
 
+        //ARouter初始化SDK
         if (BuildConfig.DEBUG) {
             ARouter.openLog()
             ARouter.openDebug()

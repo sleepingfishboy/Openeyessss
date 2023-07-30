@@ -82,14 +82,4 @@ class DailyFragment : Fragment() {
         super.onPause()
         requireActivity().unregisterReceiver(networkChangeReceiver)
     }
-
-    private fun refresh(dailyAdapter: DailyAdapter) {
-        thread {
-            Thread.sleep(1000)
-            run {
-                dailyAdapter.notifyDataSetChanged()
-                swipeRefreshLayout.isRefreshing = false
-            }
-        }
-    }
 }
