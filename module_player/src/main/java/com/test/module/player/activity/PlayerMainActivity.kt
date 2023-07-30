@@ -14,18 +14,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.test.module.player.viewmodel.PlayerMainViewModel
 import com.test.module.player.R
 import com.test.module.player.adapter.RelevantAdapter
 import com.test.module.player.fragment.CommentFragment
-import com.test.module.player.network.ApiManager
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videoplayer.player.VideoView
 
@@ -34,8 +32,9 @@ import xyz.doikki.videoplayer.player.VideoView
 class PlayerMainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var videoView: VideoView
-    private var disposable: Disposable? = null
+
     private lateinit var adapter: RelevantAdapter
+    private lateinit var playerMainViewModel: PlayerMainViewModel
 
 
     @Autowired
@@ -77,18 +76,7 @@ class PlayerMainActivity : AppCompatActivity() {
 
         mIvDownload?.setOnClickListener {
             mVibrator.vibrate(50)
-            Log.d("ggg", "(:)-->> 下载")
-            Toast.makeText(this, "开始下载", Toast.LENGTH_SHORT).show()
-            val mDownloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            val resource = Uri.parse(url)
-            val request = DownloadManager.Request(resource)
-
-            request.setDestinationInExternalPublicDir("Download", "$title.mp4")
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            request.setVisibleInDownloadsUi(true)
-            mDownloadManager.enqueue(request)
-
+            downLoad()
         }
 
         mIvTransmit?.setOnClickListener {
@@ -106,6 +94,7 @@ class PlayerMainActivity : AppCompatActivity() {
 
         mIvLike?.setOnClickListener {
             mVibrator.vibrate(50)
+
             isClicked = if (isClicked) {
                 Toast.makeText(this, "这个视频不太好🙈", Toast.LENGTH_SHORT).show()
 
@@ -119,6 +108,9 @@ class PlayerMainActivity : AppCompatActivity() {
         }
         val des: TextView = findViewById(R.id.tv_cv_intro)
         des.text = title + "\n" + "\n" + description
+
+        playerMainViewModel = ViewModelProvider(this).get(PlayerMainViewModel::class.java)
+
         if (id != null) {
             recyclerView = findViewById(R.id.rv_relevant)
             recyclerView.layoutManager = LinearLayoutManager(this)
@@ -126,20 +118,14 @@ class PlayerMainActivity : AppCompatActivity() {
 
             adapter = RelevantAdapter()
             recyclerView.adapter = adapter
-            disposable = ApiManager.getRelatedVideos(id)
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe({ relevantVideos ->
-                    try {
-                        adapter.setRelevantData(relevantVideos.itemList)
-                    } catch (e: Exception) {
-                        // 处理设置数据时可能发生的异常
-                        e.printStackTrace()
-                    }
-                }, { error ->
-                    // 处理订阅过程中可能发生的错误
-                    error.printStackTrace()
-                })
+            // 观察相关视频数据
+            playerMainViewModel.relevantVideos.observe(this) { relevantVideos ->
+                adapter.setRelevantData(relevantVideos)
+            }
+
+            // 加载相关视频数据
+
+            playerMainViewModel.loadRelevantVideos(id)
         }
 
         videoView = findViewById(R.id.player)
@@ -169,6 +155,19 @@ class PlayerMainActivity : AppCompatActivity() {
         context.startActivity(shareIntent)
     }
 
+    private fun downLoad() {
+        Log.d("ggg", "(:)-->> 下载")
+        Toast.makeText(this, "开始下载", Toast.LENGTH_SHORT).show()
+        val mDownloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+        val resource = Uri.parse(url)
+        val request = DownloadManager.Request(resource)
+
+        request.setDestinationInExternalPublicDir("Download", "$title.mp4")
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setVisibleInDownloadsUi(true)
+        mDownloadManager.enqueue(request)
+    }
 
     override fun onPause() {
         super.onPause()
@@ -182,7 +181,7 @@ class PlayerMainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        videoView.release()
+        playerMainViewModel.onCleared()
     }
 
 
